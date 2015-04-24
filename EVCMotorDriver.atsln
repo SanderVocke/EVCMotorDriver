@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "EVCMotorDriver", "EVCMotorDriver\EVCMotorDriver.cproj", "{792D6A48-F65B-4191-A3D0-6760BD6AA27F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{792D6A48-F65B-4191-A3D0-6760BD6AA27F}.Debug|AVR.ActiveCfg = Debug|AVR
+		{792D6A48-F65B-4191-A3D0-6760BD6AA27F}.Debug|AVR.Build.0 = Debug|AVR
+		{792D6A48-F65B-4191-A3D0-6760BD6AA27F}.Release|AVR.ActiveCfg = Release|AVR
+		{792D6A48-F65B-4191-A3D0-6760BD6AA27F}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
