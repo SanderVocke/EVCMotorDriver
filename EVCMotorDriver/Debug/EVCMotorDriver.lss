@@ -3,51 +3,53 @@ EVCMotorDriver.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000009c  00000000  00000000  00000054  2**1
+  0 .text         00000258  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .comment      00000030  00000000  00000000  000000f0  2**0
+  1 .bss          00000008  00800060  00800060  000002cc  2**0
+                  ALLOC
+  2 .comment      00000030  00000000  00000000  000002cc  2**0
                   CONTENTS, READONLY
-  2 .debug_aranges 00000038  00000000  00000000  00000120  2**0
+  3 .debug_aranges 00000048  00000000  00000000  000002fc  2**0
                   CONTENTS, READONLY, DEBUGGING
-  3 .debug_info   00000211  00000000  00000000  00000158  2**0
+  4 .debug_info   000002e5  00000000  00000000  00000344  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_abbrev 000000fd  00000000  00000000  00000369  2**0
+  5 .debug_abbrev 00000138  00000000  00000000  00000629  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_line   00000104  00000000  00000000  00000466  2**0
+  6 .debug_line   00000154  00000000  00000000  00000761  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_frame  00000054  00000000  00000000  0000056c  2**2
+  7 .debug_frame  000000c8  00000000  00000000  000008b8  2**2
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_str    000001c6  00000000  00000000  000005c0  2**0
+  8 .debug_str    0000022d  00000000  00000000  00000980  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_loc    0000003a  00000000  00000000  00000786  2**0
+  9 .debug_loc    00000180  00000000  00000000  00000bad  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_ranges 00000028  00000000  00000000  000007c0  2**0
+ 10 .debug_ranges 00000038  00000000  00000000  00000d2d  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
-   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
-  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 a6 00 	jmp	0x14c	; 0x14c <__vector_19>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
 
 00000054 <__ctors_end>:
   54:	11 24       	eor	r1, r1
@@ -56,82 +58,392 @@ Disassembly of section .text:
   5a:	d8 e0       	ldi	r29, 0x08	; 8
   5c:	de bf       	out	0x3e, r29	; 62
   5e:	cd bf       	out	0x3d, r28	; 61
-  60:	0e 94 49 00 	call	0x92	; 0x92 <main>
-  64:	0c 94 4c 00 	jmp	0x98	; 0x98 <_exit>
 
-00000068 <__bad_interrupt>:
-  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
 
-0000006c <init>:
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	a8 36       	cpi	r26, 0x68	; 104
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 82 00 	call	0x104	; 0x104 <main>
+  74:	0c 94 2a 01 	jmp	0x254	; 0x254 <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <setMotorDuty>:
+        
+    }
+}
+
+void setMotorDuty(motor_t motor, uint8_t duty){
+	switch(motor){
+  7c:	88 23       	and	r24, r24
+  7e:	19 f0       	breq	.+6      	; 0x86 <setMotorDuty+0xa>
+  80:	81 30       	cpi	r24, 0x01	; 1
+  82:	41 f0       	breq	.+16     	; 0x94 <setMotorDuty+0x18>
+  84:	08 95       	ret
+		case LEFT_MOTOR:
+		OCR1A = 255-duty;
+  86:	8f ef       	ldi	r24, 0xFF	; 255
+  88:	90 e0       	ldi	r25, 0x00	; 0
+  8a:	86 1b       	sub	r24, r22
+  8c:	91 09       	sbc	r25, r1
+  8e:	9b bd       	out	0x2b, r25	; 43
+  90:	8a bd       	out	0x2a, r24	; 42
+		break;
+  92:	08 95       	ret
+		case RIGHT_MOTOR:
+		OCR1B = 255-duty;
+  94:	8f ef       	ldi	r24, 0xFF	; 255
+  96:	90 e0       	ldi	r25, 0x00	; 0
+  98:	86 1b       	sub	r24, r22
+  9a:	91 09       	sbc	r25, r1
+  9c:	99 bd       	out	0x29, r25	; 41
+  9e:	88 bd       	out	0x28, r24	; 40
+  a0:	08 95       	ret
+
+000000a2 <setMotorDirection>:
+		break;
+	}
+}
+
+void setMotorDirection(motor_t motor, direction_t direction){
+	switch(motor){
+  a2:	88 23       	and	r24, r24
+  a4:	19 f0       	breq	.+6      	; 0xac <setMotorDirection+0xa>
+  a6:	81 30       	cpi	r24, 0x01	; 1
+  a8:	39 f0       	breq	.+14     	; 0xb8 <setMotorDirection+0x16>
+  aa:	08 95       	ret
+		case LEFT_MOTOR:
+		if(direction==FORWARD) PORTA |= 0b00000001;
+  ac:	61 11       	cpse	r22, r1
+  ae:	02 c0       	rjmp	.+4      	; 0xb4 <setMotorDirection+0x12>
+  b0:	d8 9a       	sbi	0x1b, 0	; 27
+  b2:	08 95       	ret
+		else PORTA &= 0b11111110;
+  b4:	d8 98       	cbi	0x1b, 0	; 27
+  b6:	08 95       	ret
+		break;
+		case RIGHT_MOTOR:
+		if(direction==FORWARD) PORTA &= 0b11111101;
+  b8:	61 11       	cpse	r22, r1
+  ba:	02 c0       	rjmp	.+4      	; 0xc0 <setMotorDirection+0x1e>
+  bc:	d9 98       	cbi	0x1b, 1	; 27
+  be:	08 95       	ret
+		else PORTA |= 0b00000010;
+  c0:	d9 9a       	sbi	0x1b, 1	; 27
+  c2:	08 95       	ret
+
+000000c4 <init>:
 	//Init I/O pins
 	
 	/* Port A:
 	- pins 0 and 1: direction outputs to motor controller (CW/CCW).
 	*/
 	DDRA |= 0b00000011;
-  6c:	8a b3       	in	r24, 0x1a	; 26
-  6e:	83 60       	ori	r24, 0x03	; 3
-  70:	8a bb       	out	0x1a, r24	; 26
+  c4:	8a b3       	in	r24, 0x1a	; 26
+  c6:	83 60       	ori	r24, 0x03	; 3
+  c8:	8a bb       	out	0x1a, r24	; 26
 	
 	/* Port D:
 	- pins 4 and 5: PWM outputs to motor controller.
 	*/
 	DDRD |= 0b00110000;
-  72:	81 b3       	in	r24, 0x11	; 17
-  74:	80 63       	ori	r24, 0x30	; 48
-  76:	81 bb       	out	0x11, r24	; 17
-}
-
-void setMotorDuty(motor_t motor, uint8_t duty){
-	switch(motor){
-		case LEFT_MOTOR:
-		OCR1A = 255-duty;
-  78:	8f ef       	ldi	r24, 0xFF	; 255
-  7a:	90 e0       	ldi	r25, 0x00	; 0
-  7c:	9b bd       	out	0x2b, r25	; 43
-  7e:	8a bd       	out	0x2a, r24	; 42
-		break;
-		case RIGHT_MOTOR:
-		OCR1B = 255-duty;
-  80:	99 bd       	out	0x29, r25	; 41
-  82:	88 bd       	out	0x28, r24	; 40
-}
-
-void setMotorDirection(motor_t motor, direction_t direction){
-	switch(motor){
-		case LEFT_MOTOR:
-		if(direction==FORWARD) PORTA |= 0b00000001;
-  84:	d8 9a       	sbi	0x1b, 0	; 27
-		else PORTA &= 0b11111110;
-		break;
-		case RIGHT_MOTOR:
-		if(direction==FORWARD) PORTA &= 0b11111101;
-  86:	d9 98       	cbi	0x1b, 1	; 27
-	setMotorDirection(LEFT_MOTOR, FORWARD);
-	setMotorDirection(RIGHT_MOTOR, FORWARD);
+  ca:	81 b3       	in	r24, 0x11	; 17
+  cc:	80 63       	ori	r24, 0x30	; 48
+  ce:	81 bb       	out	0x11, r24	; 17
+	
+	//Init Motor Parameters
+	setMotorDuty(LEFT_MOTOR, 0);
+  d0:	60 e0       	ldi	r22, 0x00	; 0
+  d2:	80 e0       	ldi	r24, 0x00	; 0
+  d4:	0e 94 3e 00 	call	0x7c	; 0x7c <setMotorDuty>
+	setMotorDuty(RIGHT_MOTOR, 0);
+  d8:	60 e0       	ldi	r22, 0x00	; 0
+  da:	81 e0       	ldi	r24, 0x01	; 1
+  dc:	0e 94 3e 00 	call	0x7c	; 0x7c <setMotorDuty>
+	setMotorDirection(LEFT_MOTOR, BACKWARD);
+  e0:	61 e0       	ldi	r22, 0x01	; 1
+  e2:	80 e0       	ldi	r24, 0x00	; 0
+  e4:	0e 94 51 00 	call	0xa2	; 0xa2 <setMotorDirection>
+	setMotorDirection(RIGHT_MOTOR, BACKWARD);
+  e8:	61 e0       	ldi	r22, 0x01	; 1
+  ea:	81 e0       	ldi	r24, 0x01	; 1
+  ec:	0e 94 51 00 	call	0xa2	; 0xa2 <setMotorDirection>
 	
 	//Init Timers	
 	//Timer/Counter1: For 100kHz PWM to motor driver.
 	TCCR1A = 0b11110001; //Fast PWM mode, inverting
-  88:	81 ef       	ldi	r24, 0xF1	; 241
-  8a:	8f bd       	out	0x2f, r24	; 47
+  f0:	81 ef       	ldi	r24, 0xF1	; 241
+  f2:	8f bd       	out	0x2f, r24	; 47
 	TCCR1B = 0b00001001; //Fast PWM mode, system clock source	
-  8c:	89 e0       	ldi	r24, 0x09	; 9
-  8e:	8e bd       	out	0x2e, r24	; 46
-  90:	08 95       	ret
+  f4:	89 e0       	ldi	r24, 0x09	; 9
+  f6:	8e bd       	out	0x2e, r24	; 46
+	
+	//Init I2C slave mode
+	TWAR = (I2C_SLAVE_ADDR<<1)|1; //slave addr (bits 7-1) and respond to general call
+  f8:	87 e1       	ldi	r24, 0x17	; 23
+  fa:	82 b9       	out	0x02, r24	; 2
+	TWCR = (1<<TWEN) | (1<<TWEA) | (1<<TWIE); //slave mode config
+  fc:	85 e4       	ldi	r24, 0x45	; 69
+  fe:	86 bf       	out	0x36, r24	; 54
+	
+	//global interrupts
+	sei();
+ 100:	78 94       	sei
+ 102:	08 95       	ret
 
-00000092 <main>:
+00000104 <main>:
 void setMotorDirection(motor_t motor, direction_t direction);
 void init(void);
 
 int main(void)
 {
 	init();
-  92:	0e 94 36 00 	call	0x6c	; 0x6c <init>
-  96:	ff cf       	rjmp	.-2      	; 0x96 <main+0x4>
+ 104:	0e 94 62 00 	call	0xc4	; 0xc4 <init>
+ 108:	ff cf       	rjmp	.-2      	; 0x108 <main+0x4>
 
-00000098 <_exit>:
-  98:	f8 94       	cli
+0000010a <processI2CByte>:
+	
+	//global interrupts
+	sei();
+}
 
-0000009a <__stop_program>:
-  9a:	ff cf       	rjmp	.-2      	; 0x9a <__stop_program>
+void processI2CByte(){
+ 10a:	cf 93       	push	r28
+	uint8_t byte = TWDR;
+ 10c:	c3 b1       	in	r28, 0x03	; 3
+	//first byte: selects motor and direction.	
+	if(i2c_r_index==0){
+ 10e:	80 91 67 00 	lds	r24, 0x0067
+ 112:	81 11       	cpse	r24, r1
+ 114:	0c c0       	rjmp	.+24     	; 0x12e <processI2CByte+0x24>
+		i2c_motor = (byte & MOTOR_BIT) ? LEFT_MOTOR : RIGHT_MOTOR;
+ 116:	81 e0       	ldi	r24, 0x01	; 1
+ 118:	c1 fb       	bst	r28, 1
+ 11a:	99 27       	eor	r25, r25
+ 11c:	90 f9       	bld	r25, 0
+ 11e:	98 27       	eor	r25, r24
+ 120:	90 93 61 00 	sts	0x0061, r25
+		i2c_direction = (byte & DIRECTION_BIT) ? FORWARD : BACKWARD;		
+ 124:	c8 27       	eor	r28, r24
+ 126:	c1 70       	andi	r28, 0x01	; 1
+ 128:	c0 93 60 00 	sts	0x0060, r28
+ 12c:	0d c0       	rjmp	.+26     	; 0x148 <processI2CByte+0x3e>
+	}
+	else if(i2c_r_index==1){
+ 12e:	81 30       	cpi	r24, 0x01	; 1
+ 130:	59 f4       	brne	.+22     	; 0x148 <processI2CByte+0x3e>
+		setMotorDirection(i2c_motor, i2c_direction);
+ 132:	60 91 60 00 	lds	r22, 0x0060
+ 136:	80 91 61 00 	lds	r24, 0x0061
+ 13a:	0e 94 51 00 	call	0xa2	; 0xa2 <setMotorDirection>
+		setMotorDuty(i2c_motor, byte);
+ 13e:	6c 2f       	mov	r22, r28
+ 140:	80 91 61 00 	lds	r24, 0x0061
+ 144:	0e 94 3e 00 	call	0x7c	; 0x7c <setMotorDuty>
+	}
+}
+ 148:	cf 91       	pop	r28
+ 14a:	08 95       	ret
+
+0000014c <__vector_19>:
+
+//interrupt handler for I2C slave operation
+ISR(TWI_vect){	
+ 14c:	1f 92       	push	r1
+ 14e:	0f 92       	push	r0
+ 150:	0f b6       	in	r0, 0x3f	; 63
+ 152:	0f 92       	push	r0
+ 154:	11 24       	eor	r1, r1
+ 156:	2f 93       	push	r18
+ 158:	3f 93       	push	r19
+ 15a:	4f 93       	push	r20
+ 15c:	5f 93       	push	r21
+ 15e:	6f 93       	push	r22
+ 160:	7f 93       	push	r23
+ 162:	8f 93       	push	r24
+ 164:	9f 93       	push	r25
+ 166:	af 93       	push	r26
+ 168:	bf 93       	push	r27
+ 16a:	cf 93       	push	r28
+ 16c:	ef 93       	push	r30
+ 16e:	ff 93       	push	r31
+	uint8_t sreg_save = SREG;
+ 170:	cf b7       	in	r28, 0x3f	; 63
+	cli();
+ 172:	f8 94       	cli
+	switch(TW_STATUS){
+ 174:	81 b1       	in	r24, 0x01	; 1
+ 176:	88 7f       	andi	r24, 0xF8	; 248
+ 178:	88 38       	cpi	r24, 0x88	; 136
+ 17a:	a1 f1       	breq	.+104    	; 0x1e4 <__vector_19+0x98>
+ 17c:	60 f4       	brcc	.+24     	; 0x196 <__vector_19+0x4a>
+ 17e:	80 36       	cpi	r24, 0x60	; 96
+ 180:	b9 f0       	breq	.+46     	; 0x1b0 <__vector_19+0x64>
+ 182:	20 f4       	brcc	.+8      	; 0x18c <__vector_19+0x40>
+ 184:	88 23       	and	r24, r24
+ 186:	09 f4       	brne	.+2      	; 0x18a <__vector_19+0x3e>
+ 188:	50 c0       	rjmp	.+160    	; 0x22a <__vector_19+0xde>
+ 18a:	51 c0       	rjmp	.+162    	; 0x22e <__vector_19+0xe2>
+ 18c:	88 36       	cpi	r24, 0x68	; 104
+ 18e:	21 f1       	breq	.+72     	; 0x1d8 <__vector_19+0x8c>
+ 190:	80 38       	cpi	r24, 0x80	; 128
+ 192:	99 f0       	breq	.+38     	; 0x1ba <__vector_19+0x6e>
+ 194:	4c c0       	rjmp	.+152    	; 0x22e <__vector_19+0xe2>
+ 196:	88 3b       	cpi	r24, 0xB8	; 184
+ 198:	89 f1       	breq	.+98     	; 0x1fc <__vector_19+0xb0>
+ 19a:	28 f4       	brcc	.+10     	; 0x1a6 <__vector_19+0x5a>
+ 19c:	80 3a       	cpi	r24, 0xA0	; 160
+ 19e:	f9 f0       	breq	.+62     	; 0x1de <__vector_19+0x92>
+ 1a0:	88 3a       	cpi	r24, 0xA8	; 168
+ 1a2:	19 f1       	breq	.+70     	; 0x1ea <__vector_19+0x9e>
+ 1a4:	44 c0       	rjmp	.+136    	; 0x22e <__vector_19+0xe2>
+ 1a6:	80 3c       	cpi	r24, 0xC0	; 192
+ 1a8:	e9 f1       	breq	.+122    	; 0x224 <__vector_19+0xd8>
+ 1aa:	88 3c       	cpi	r24, 0xC8	; 200
+ 1ac:	d9 f1       	breq	.+118    	; 0x224 <__vector_19+0xd8>
+ 1ae:	3f c0       	rjmp	.+126    	; 0x22e <__vector_19+0xe2>
+		//--------------Slave receiver------------------------------------
+		//SLA_W received and acked, prepare for data receiving
+		case 0x60:
+		TWACK;
+ 1b0:	85 ec       	ldi	r24, 0xC5	; 197
+ 1b2:	86 bf       	out	0x36, r24	; 54
+		i2c_r_index = 0;
+ 1b4:	10 92 67 00 	sts	0x0067, r1
+		break;
+ 1b8:	3a c0       	rjmp	.+116    	; 0x22e <__vector_19+0xe2>
+		case 0x80:  //a byte was received, store it and
+		//setup the buffer to recieve another
+		//i2c_r[i2c_r_index] = TWDR;
+		processI2CByte();
+ 1ba:	0e 94 85 00 	call	0x10a	; 0x10a <processI2CByte>
+		i2c_r_index++;
+ 1be:	80 91 67 00 	lds	r24, 0x0067
+ 1c2:	8f 5f       	subi	r24, 0xFF	; 255
+ 1c4:	80 93 67 00 	sts	0x0067, r24
+		//don't ack next data if buffer is full
+		if(i2c_r_index >= I2C_BUFSIZE_RECV){
+ 1c8:	86 30       	cpi	r24, 0x06	; 6
+ 1ca:	18 f0       	brcs	.+6      	; 0x1d2 <__vector_19+0x86>
+			TWNACK;
+ 1cc:	85 e8       	ldi	r24, 0x85	; 133
+ 1ce:	86 bf       	out	0x36, r24	; 54
+ 1d0:	2e c0       	rjmp	.+92     	; 0x22e <__vector_19+0xe2>
+			}else {
+			TWACK;
+ 1d2:	85 ec       	ldi	r24, 0xC5	; 197
+ 1d4:	86 bf       	out	0x36, r24	; 54
+ 1d6:	2b c0       	rjmp	.+86     	; 0x22e <__vector_19+0xe2>
+		}
+		break;
+		case 0x68://adressed as slave while in master mode.
+		//should never happen, better reset;
+		i2c_rst=1;
+ 1d8:	81 e0       	ldi	r24, 0x01	; 1
+ 1da:	80 93 66 00 	sts	0x0066, r24
+		case 0xA0: //Stop or rep start, reset state machine
+		TWACK;
+ 1de:	85 ec       	ldi	r24, 0xC5	; 197
+ 1e0:	86 bf       	out	0x36, r24	; 54
+		break;
+ 1e2:	25 c0       	rjmp	.+74     	; 0x22e <__vector_19+0xe2>
+		//-------------- error recovery ----------------------------------
+		case 0x88: //data received  but not acked
+		//should not happen if the master is behaving as expected
+		//switch to not adressed mode
+		TWACK;
+ 1e4:	85 ec       	ldi	r24, 0xC5	; 197
+ 1e6:	86 bf       	out	0x36, r24	; 54
+		break;
+ 1e8:	22 c0       	rjmp	.+68     	; 0x22e <__vector_19+0xe2>
+		//---------------Slave Transmitter--------------------------------
+		case 0xA8:  //SLA R received, prep for transmission
+		//and load first data
+		i2c_t_index=1;
+ 1ea:	81 e0       	ldi	r24, 0x01	; 1
+ 1ec:	80 93 65 00 	sts	0x0065, r24
+		TWDR = i2c_t[0];
+ 1f0:	80 91 62 00 	lds	r24, 0x0062
+ 1f4:	83 b9       	out	0x03, r24	; 3
+		TWACK;
+ 1f6:	85 ec       	ldi	r24, 0xC5	; 197
+ 1f8:	86 bf       	out	0x36, r24	; 54
+		break;
+ 1fa:	19 c0       	rjmp	.+50     	; 0x22e <__vector_19+0xe2>
+		case 0xB8:  //data transmitted and acked by master, load next
+		TWDR = i2c_t[i2c_t_index];
+ 1fc:	e0 91 65 00 	lds	r30, 0x0065
+ 200:	f0 e0       	ldi	r31, 0x00	; 0
+ 202:	ee 59       	subi	r30, 0x9E	; 158
+ 204:	ff 4f       	sbci	r31, 0xFF	; 255
+ 206:	80 81       	ld	r24, Z
+ 208:	83 b9       	out	0x03, r24	; 3
+		i2c_t_index++;
+ 20a:	80 91 65 00 	lds	r24, 0x0065
+ 20e:	8f 5f       	subi	r24, 0xFF	; 255
+ 210:	80 93 65 00 	sts	0x0065, r24
+		//designate last byte if we're at the end of the buffer
+		if(i2c_t_index >= I2C_BUFSIZE_TRAN) TWNACK;
+ 214:	83 30       	cpi	r24, 0x03	; 3
+ 216:	18 f0       	brcs	.+6      	; 0x21e <__vector_19+0xd2>
+ 218:	85 e8       	ldi	r24, 0x85	; 133
+ 21a:	86 bf       	out	0x36, r24	; 54
+ 21c:	08 c0       	rjmp	.+16     	; 0x22e <__vector_19+0xe2>
+		else TWACK;
+ 21e:	85 ec       	ldi	r24, 0xC5	; 197
+ 220:	86 bf       	out	0x36, r24	; 54
+ 222:	05 c0       	rjmp	.+10     	; 0x22e <__vector_19+0xe2>
+		case 0xC8: //last byte send and acked by master
+		//last bytes should not be acked, ignore till start/stop
+		//reset=1;
+		case 0xC0: //last byte send and nacked by master
+		//(as should be)
+		TWACK;
+ 224:	85 ec       	ldi	r24, 0xC5	; 197
+ 226:	86 bf       	out	0x36, r24	; 54
+		break;
+ 228:	02 c0       	rjmp	.+4      	; 0x22e <__vector_19+0xe2>
+		//--------------------- bus error---------------------------------
+		//illegal start or stop received, reset the I2C hardware
+		case 0x00:
+		TWRESET;
+ 22a:	85 ed       	ldi	r24, 0xD5	; 213
+ 22c:	86 bf       	out	0x36, r24	; 54
+		break;
+	}
+	SREG = sreg_save;
+ 22e:	cf bf       	out	0x3f, r28	; 63
+ 230:	ff 91       	pop	r31
+ 232:	ef 91       	pop	r30
+ 234:	cf 91       	pop	r28
+ 236:	bf 91       	pop	r27
+ 238:	af 91       	pop	r26
+ 23a:	9f 91       	pop	r25
+ 23c:	8f 91       	pop	r24
+ 23e:	7f 91       	pop	r23
+ 240:	6f 91       	pop	r22
+ 242:	5f 91       	pop	r21
+ 244:	4f 91       	pop	r20
+ 246:	3f 91       	pop	r19
+ 248:	2f 91       	pop	r18
+ 24a:	0f 90       	pop	r0
+ 24c:	0f be       	out	0x3f, r0	; 63
+ 24e:	0f 90       	pop	r0
+ 250:	1f 90       	pop	r1
+ 252:	18 95       	reti
+
+00000254 <_exit>:
+ 254:	f8 94       	cli
+
+00000256 <__stop_program>:
+ 256:	ff cf       	rjmp	.-2      	; 0x256 <__stop_program>
