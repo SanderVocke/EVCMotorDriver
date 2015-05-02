@@ -104,10 +104,10 @@ void init(void){
 	DDRD |= 0b00110000;
 	
 	//Init Motor Parameters
-	setMotorDuty(LEFT_MOTOR, 0);
-	setMotorDuty(RIGHT_MOTOR, 0);
-	setMotorDirection(LEFT_MOTOR, BACKWARD);
-	setMotorDirection(RIGHT_MOTOR, BACKWARD);
+	setMotorDuty(LEFT_MOTOR, 255);
+	setMotorDuty(RIGHT_MOTOR, 255);
+	setMotorDirection(LEFT_MOTOR, FORWARD);
+	setMotorDirection(RIGHT_MOTOR, FORWARD);
 	
 	//Init Timers	
 	//Timer/Counter1: For 100kHz PWM to motor driver.

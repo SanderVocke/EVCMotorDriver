@@ -394,9 +394,9 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x2e5
+.debug_info     0x00000000      0x2e7
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x2e5 EVCMotorDriver.o
+ .debug_info    0x00000000      0x2e7 EVCMotorDriver.o
 
 .debug_abbrev   0x00000000      0x138
  *(.debug_abbrev)
