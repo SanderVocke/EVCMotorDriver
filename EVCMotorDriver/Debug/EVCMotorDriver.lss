@@ -3,35 +3,35 @@ EVCMotorDriver.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000258  00000000  00000000  00000074  2**1
+  0 .text         00000660  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          00000008  00800060  00800060  000002cc  2**0
+  1 .bss          0000003e  00800060  00800060  000006d4  2**0
                   ALLOC
-  2 .comment      00000030  00000000  00000000  000002cc  2**0
+  2 .comment      00000030  00000000  00000000  000006d4  2**0
                   CONTENTS, READONLY
-  3 .debug_aranges 00000048  00000000  00000000  000002fc  2**0
+  3 .debug_aranges 00000080  00000000  00000000  00000704  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_info   000002e7  00000000  00000000  00000344  2**0
+  4 .debug_info   000007cc  00000000  00000000  00000784  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_abbrev 00000138  00000000  00000000  0000062b  2**0
+  5 .debug_abbrev 00000256  00000000  00000000  00000f50  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_line   00000154  00000000  00000000  00000763  2**0
+  6 .debug_line   000002a2  00000000  00000000  000011a6  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_frame  000000c8  00000000  00000000  000008b8  2**2
+  7 .debug_frame  000001c4  00000000  00000000  00001448  2**2
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_str    0000022d  00000000  00000000  00000980  2**0
+  8 .debug_str    00000395  00000000  00000000  0000160c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_loc    00000180  00000000  00000000  00000bad  2**0
+  9 .debug_loc    00000713  00000000  00000000  000019a1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_ranges 00000038  00000000  00000000  00000d2d  2**0
+ 10 .debug_ranges 000000a0  00000000  00000000  000020b4  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
-   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   4:	0c 94 e8 01 	jmp	0x3d0	; 0x3d0 <__vector_1>
+   8:	0c 94 35 02 	jmp	0x46a	; 0x46a <__vector_2>
    c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
@@ -48,7 +48,7 @@ Disassembly of section .text:
   40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
   48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
-  4c:	0c 94 a6 00 	jmp	0x14c	; 0x14c <__vector_19>
+  4c:	0c 94 82 02 	jmp	0x504	; 0x504 <__vector_19>
   50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
 
 00000054 <__ctors_end>:
@@ -69,381 +69,1068 @@ Disassembly of section .text:
   68:	1d 92       	st	X+, r1
 
 0000006a <.do_clear_bss_start>:
-  6a:	a8 36       	cpi	r26, 0x68	; 104
+  6a:	ae 39       	cpi	r26, 0x9E	; 158
   6c:	b2 07       	cpc	r27, r18
   6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
-  70:	0e 94 82 00 	call	0x104	; 0x104 <main>
-  74:	0c 94 2a 01 	jmp	0x254	; 0x254 <_exit>
+  70:	0e 94 e3 01 	call	0x3c6	; 0x3c6 <main>
+  74:	0c 94 2e 03 	jmp	0x65c	; 0x65c <_exit>
 
 00000078 <__bad_interrupt>:
   78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
 
-0000007c <setMotorDuty>:
-        
-    }
-}
-
-void setMotorDuty(motor_t motor, uint8_t duty){
-	switch(motor){
-  7c:	88 23       	and	r24, r24
-  7e:	19 f0       	breq	.+6      	; 0x86 <setMotorDuty+0xa>
-  80:	81 30       	cpi	r24, 0x01	; 1
-  82:	41 f0       	breq	.+16     	; 0x94 <setMotorDuty+0x18>
-  84:	08 95       	ret
-		case LEFT_MOTOR:
-		OCR1A = 255-duty;
-  86:	8f ef       	ldi	r24, 0xFF	; 255
-  88:	90 e0       	ldi	r25, 0x00	; 0
-  8a:	86 1b       	sub	r24, r22
-  8c:	91 09       	sbc	r25, r1
-  8e:	9b bd       	out	0x2b, r25	; 43
-  90:	8a bd       	out	0x2a, r24	; 42
-		break;
-  92:	08 95       	ret
-		case RIGHT_MOTOR:
-		OCR1B = 255-duty;
-  94:	8f ef       	ldi	r24, 0xFF	; 255
-  96:	90 e0       	ldi	r25, 0x00	; 0
-  98:	86 1b       	sub	r24, r22
-  9a:	91 09       	sbc	r25, r1
-  9c:	99 bd       	out	0x29, r25	; 41
-  9e:	88 bd       	out	0x28, r24	; 40
-  a0:	08 95       	ret
-
-000000a2 <setMotorDirection>:
+0000007c <setMotorDirection>:
 		break;
 	}
 }
 
 void setMotorDirection(motor_t motor, direction_t direction){
 	switch(motor){
-  a2:	88 23       	and	r24, r24
-  a4:	19 f0       	breq	.+6      	; 0xac <setMotorDirection+0xa>
-  a6:	81 30       	cpi	r24, 0x01	; 1
-  a8:	39 f0       	breq	.+14     	; 0xb8 <setMotorDirection+0x16>
-  aa:	08 95       	ret
+  7c:	88 23       	and	r24, r24
+  7e:	19 f0       	breq	.+6      	; 0x86 <setMotorDirection+0xa>
+  80:	81 30       	cpi	r24, 0x01	; 1
+  82:	39 f0       	breq	.+14     	; 0x92 <setMotorDirection+0x16>
+  84:	08 95       	ret
 		case LEFT_MOTOR:
 		if(direction==FORWARD) PORTA |= 0b00000001;
-  ac:	61 11       	cpse	r22, r1
-  ae:	02 c0       	rjmp	.+4      	; 0xb4 <setMotorDirection+0x12>
-  b0:	d8 9a       	sbi	0x1b, 0	; 27
-  b2:	08 95       	ret
+  86:	61 11       	cpse	r22, r1
+  88:	02 c0       	rjmp	.+4      	; 0x8e <setMotorDirection+0x12>
+  8a:	d8 9a       	sbi	0x1b, 0	; 27
+  8c:	08 95       	ret
 		else PORTA &= 0b11111110;
-  b4:	d8 98       	cbi	0x1b, 0	; 27
-  b6:	08 95       	ret
+  8e:	d8 98       	cbi	0x1b, 0	; 27
+  90:	08 95       	ret
 		break;
 		case RIGHT_MOTOR:
 		if(direction==FORWARD) PORTA &= 0b11111101;
-  b8:	61 11       	cpse	r22, r1
-  ba:	02 c0       	rjmp	.+4      	; 0xc0 <setMotorDirection+0x1e>
-  bc:	d9 98       	cbi	0x1b, 1	; 27
-  be:	08 95       	ret
+  92:	61 11       	cpse	r22, r1
+  94:	02 c0       	rjmp	.+4      	; 0x9a <setMotorDirection+0x1e>
+  96:	d9 98       	cbi	0x1b, 1	; 27
+  98:	08 95       	ret
 		else PORTA |= 0b00000010;
-  c0:	d9 9a       	sbi	0x1b, 1	; 27
-  c2:	08 95       	ret
+  9a:	d9 9a       	sbi	0x1b, 1	; 27
+  9c:	08 95       	ret
 
-000000c4 <init>:
+0000009e <init>:
 	//Init I/O pins
 	
 	/* Port A:
 	- pins 0 and 1: direction outputs to motor controller (CW/CCW).
 	*/
 	DDRA |= 0b00000011;
-  c4:	8a b3       	in	r24, 0x1a	; 26
-  c6:	83 60       	ori	r24, 0x03	; 3
-  c8:	8a bb       	out	0x1a, r24	; 26
+  9e:	8a b3       	in	r24, 0x1a	; 26
+  a0:	83 60       	ori	r24, 0x03	; 3
+  a2:	8a bb       	out	0x1a, r24	; 26
 	
 	/* Port D:
 	- pins 4 and 5: PWM outputs to motor controller.
+	- pins 2 and 3: PWM (interrupt) inputs from angle sensors.
 	*/
 	DDRD |= 0b00110000;
-  ca:	81 b3       	in	r24, 0x11	; 17
-  cc:	80 63       	ori	r24, 0x30	; 48
-  ce:	81 bb       	out	0x11, r24	; 17
+  a4:	81 b3       	in	r24, 0x11	; 17
+  a6:	80 63       	ori	r24, 0x30	; 48
+  a8:	81 bb       	out	0x11, r24	; 17
 	
 	//Init Motor Parameters
-	setMotorDuty(LEFT_MOTOR, 255);
-  d0:	6f ef       	ldi	r22, 0xFF	; 255
-  d2:	80 e0       	ldi	r24, 0x00	; 0
-  d4:	0e 94 3e 00 	call	0x7c	; 0x7c <setMotorDuty>
-	setMotorDuty(RIGHT_MOTOR, 255);
-  d8:	6f ef       	ldi	r22, 0xFF	; 255
-  da:	81 e0       	ldi	r24, 0x01	; 1
-  dc:	0e 94 3e 00 	call	0x7c	; 0x7c <setMotorDuty>
 	setMotorDirection(LEFT_MOTOR, FORWARD);
-  e0:	60 e0       	ldi	r22, 0x00	; 0
-  e2:	80 e0       	ldi	r24, 0x00	; 0
-  e4:	0e 94 51 00 	call	0xa2	; 0xa2 <setMotorDirection>
+  aa:	60 e0       	ldi	r22, 0x00	; 0
+  ac:	80 e0       	ldi	r24, 0x00	; 0
+  ae:	0e 94 3e 00 	call	0x7c	; 0x7c <setMotorDirection>
 	setMotorDirection(RIGHT_MOTOR, FORWARD);
-  e8:	60 e0       	ldi	r22, 0x00	; 0
-  ea:	81 e0       	ldi	r24, 0x01	; 1
-  ec:	0e 94 51 00 	call	0xa2	; 0xa2 <setMotorDirection>
+  b2:	60 e0       	ldi	r22, 0x00	; 0
+  b4:	81 e0       	ldi	r24, 0x01	; 1
+  b6:	0e 94 3e 00 	call	0x7c	; 0x7c <setMotorDirection>
+}
+
+void setMotorDuty(motor_t motor, uint8_t duty){
+	switch(motor){
+		case LEFT_MOTOR:
+		OCR1A = 255-duty;
+  ba:	8f ef       	ldi	r24, 0xFF	; 255
+  bc:	90 e0       	ldi	r25, 0x00	; 0
+  be:	9b bd       	out	0x2b, r25	; 43
+  c0:	8a bd       	out	0x2a, r24	; 42
+		break;
+		case RIGHT_MOTOR:
+		OCR1B =255-duty;
+  c2:	99 bd       	out	0x29, r25	; 41
+  c4:	88 bd       	out	0x28, r24	; 40
+}
+
+void setMotorSpeed(motor_t motor, uint8_t speed){
+	switch(motor){
+		case LEFT_MOTOR:
+		t_speed_left = speed;
+  c6:	10 92 71 00 	sts	0x0071, r1
+		break;
+		case RIGHT_MOTOR:
+		t_speed_right = speed;
+  ca:	84 e6       	ldi	r24, 0x64	; 100
+  cc:	80 93 70 00 	sts	0x0070, r24
+	setMotorSpeed(RIGHT_MOTOR, 100);
+#endif
 	
 	//Init Timers	
 	//Timer/Counter1: For 100kHz PWM to motor driver.
 	TCCR1A = 0b11110001; //Fast PWM mode, inverting
-  f0:	81 ef       	ldi	r24, 0xF1	; 241
-  f2:	8f bd       	out	0x2f, r24	; 47
+  d0:	81 ef       	ldi	r24, 0xF1	; 241
+  d2:	8f bd       	out	0x2f, r24	; 47
 	TCCR1B = 0b00001001; //Fast PWM mode, system clock source	
-  f4:	89 e0       	ldi	r24, 0x09	; 9
-  f6:	8e bd       	out	0x2e, r24	; 46
+  d4:	89 e0       	ldi	r24, 0x09	; 9
+  d6:	8e bd       	out	0x2e, r24	; 46
 	
 	//Init I2C slave mode
 	TWAR = (I2C_SLAVE_ADDR<<1)|1; //slave addr (bits 7-1) and respond to general call
-  f8:	87 e1       	ldi	r24, 0x17	; 23
-  fa:	82 b9       	out	0x02, r24	; 2
+  d8:	87 e1       	ldi	r24, 0x17	; 23
+  da:	82 b9       	out	0x02, r24	; 2
 	TWCR = (1<<TWEN) | (1<<TWEA) | (1<<TWIE); //slave mode config
-  fc:	85 e4       	ldi	r24, 0x45	; 69
-  fe:	86 bf       	out	0x36, r24	; 54
+  dc:	85 e4       	ldi	r24, 0x45	; 69
+  de:	86 bf       	out	0x36, r24	; 54
+	
+#ifndef OPEN_LOOP_CONTROL //if doing PID
+	//Init external interrupts (PWM inputs)
+	MCUCR |= 0b00000101; //any edge causes interrupt
+  e0:	85 b7       	in	r24, 0x35	; 53
+  e2:	85 60       	ori	r24, 0x05	; 5
+  e4:	85 bf       	out	0x35, r24	; 53
+	GICR |= 0b11000000; //enable INTO and INT1
+  e6:	8b b7       	in	r24, 0x3b	; 59
+  e8:	80 6c       	ori	r24, 0xC0	; 192
+  ea:	8b bf       	out	0x3b, r24	; 59
+	TCNT0 = 0; //reset timer 0 (right wheel)
+  ec:	12 be       	out	0x32, r1	; 50
+	TCCR0 = 0b00000010; //clk/8 = almost 500Hz overflow rate for the timer that times PWM. Starts timer.	
+  ee:	82 e0       	ldi	r24, 0x02	; 2
+  f0:	83 bf       	out	0x33, r24	; 51
+#endif
 	
 	//global interrupts
 	sei();
- 100:	78 94       	sei
- 102:	08 95       	ret
+  f2:	78 94       	sei
+  f4:	08 95       	ret
 
-00000104 <main>:
-void setMotorDirection(motor_t motor, direction_t direction);
+000000f6 <processI2CByte>:
+}
+
+void processI2CByte(){
+	uint8_t byte = TWDR;
+  f6:	93 b1       	in	r25, 0x03	; 3
+	//first byte: selects motor and direction.	
+	if(i2c_r_index==0){
+  f8:	80 91 6f 00 	lds	r24, 0x006F
+  fc:	81 11       	cpse	r24, r1
+  fe:	0c c0       	rjmp	.+24     	; 0x118 <processI2CByte+0x22>
+		i2c_motor = (byte & MOTOR_BIT) ? LEFT_MOTOR : RIGHT_MOTOR;
+ 100:	81 e0       	ldi	r24, 0x01	; 1
+ 102:	91 fb       	bst	r25, 1
+ 104:	22 27       	eor	r18, r18
+ 106:	20 f9       	bld	r18, 0
+ 108:	28 27       	eor	r18, r24
+ 10a:	20 93 69 00 	sts	0x0069, r18
+		i2c_direction = (byte & DIRECTION_BIT) ? FORWARD : BACKWARD;		
+ 10e:	98 27       	eor	r25, r24
+ 110:	91 70       	andi	r25, 0x01	; 1
+ 112:	90 93 68 00 	sts	0x0068, r25
+ 116:	08 95       	ret
+	}
+	else if(i2c_r_index==1){
+ 118:	81 30       	cpi	r24, 0x01	; 1
+ 11a:	31 f4       	brne	.+12     	; 0x128 <processI2CByte+0x32>
+		setMotorDirection(i2c_motor, i2c_direction);
+ 11c:	60 91 68 00 	lds	r22, 0x0068
+ 120:	80 91 69 00 	lds	r24, 0x0069
+ 124:	0e 94 3e 00 	call	0x7c	; 0x7c <setMotorDirection>
+ 128:	08 95       	ret
+
+0000012a <doPID>:
+int32_t I_left = 0;
+int32_t I_right = 0;
+#define P_GAIN 10 //of 100
+#define I_GAIN 0 //of 100
+#define I_CAP 1000
+void doPID(motor_t motor){
+ 12a:	0f 93       	push	r16
+ 12c:	1f 93       	push	r17
+	int16_t error;
+	if(motor == LEFT_MOTOR){
+ 12e:	81 11       	cpse	r24, r1
+ 130:	45 c0       	rjmp	.+138    	; 0x1bc <doPID+0x92>
+		error = (int32_t)t_speed_left - (int32_t)speed_left;
+ 132:	e0 91 71 00 	lds	r30, 0x0071
+ 136:	f0 e0       	ldi	r31, 0x00	; 0
+ 138:	80 91 72 00 	lds	r24, 0x0072
+ 13c:	e8 1b       	sub	r30, r24
+ 13e:	f1 09       	sbc	r31, r1
+		I_left += error;
+ 140:	af 01       	movw	r20, r30
+ 142:	66 27       	eor	r22, r22
+ 144:	57 fd       	sbrc	r21, 7
+ 146:	60 95       	com	r22
+ 148:	76 2f       	mov	r23, r22
+ 14a:	00 91 64 00 	lds	r16, 0x0064
+ 14e:	10 91 65 00 	lds	r17, 0x0065
+ 152:	20 91 66 00 	lds	r18, 0x0066
+ 156:	30 91 67 00 	lds	r19, 0x0067
+ 15a:	40 0f       	add	r20, r16
+ 15c:	51 1f       	adc	r21, r17
+ 15e:	62 1f       	adc	r22, r18
+ 160:	73 1f       	adc	r23, r19
+ 162:	40 93 64 00 	sts	0x0064, r20
+ 166:	50 93 65 00 	sts	0x0065, r21
+ 16a:	60 93 66 00 	sts	0x0066, r22
+ 16e:	70 93 67 00 	sts	0x0067, r23
+		break;
+	}
+}
+
+uint8_t getMotorDuty(motor_t motor){
+	return (motor==LEFT_MOTOR) ? 255-OCR1A : 255-OCR1B;
+ 172:	2a b5       	in	r18, 0x2a	; 42
+ 174:	3b b5       	in	r19, 0x2b	; 43
+void doPID(motor_t motor){
+	int16_t error;
+	if(motor == LEFT_MOTOR){
+		error = (int32_t)t_speed_left - (int32_t)speed_left;
+		I_left += error;
+		int16_t newSpeed = (P_GAIN*error)/1000 + (I_GAIN*I_left)/1000 + (int16_t)getMotorDuty(LEFT_MOTOR);
+ 176:	cf 01       	movw	r24, r30
+ 178:	88 0f       	add	r24, r24
+ 17a:	99 1f       	adc	r25, r25
+ 17c:	ee 0f       	add	r30, r30
+ 17e:	ff 1f       	adc	r31, r31
+ 180:	ee 0f       	add	r30, r30
+ 182:	ff 1f       	adc	r31, r31
+ 184:	ee 0f       	add	r30, r30
+ 186:	ff 1f       	adc	r31, r31
+ 188:	8e 0f       	add	r24, r30
+ 18a:	9f 1f       	adc	r25, r31
+ 18c:	68 ee       	ldi	r22, 0xE8	; 232
+ 18e:	73 e0       	ldi	r23, 0x03	; 3
+ 190:	0e 94 1a 03 	call	0x634	; 0x634 <__divmodhi4>
+		break;
+	}
+}
+
+uint8_t getMotorDuty(motor_t motor){
+	return (motor==LEFT_MOTOR) ? 255-OCR1A : 255-OCR1B;
+ 194:	20 95       	com	r18
+void doPID(motor_t motor){
+	int16_t error;
+	if(motor == LEFT_MOTOR){
+		error = (int32_t)t_speed_left - (int32_t)speed_left;
+		I_left += error;
+		int16_t newSpeed = (P_GAIN*error)/1000 + (I_GAIN*I_left)/1000 + (int16_t)getMotorDuty(LEFT_MOTOR);
+ 196:	62 0f       	add	r22, r18
+ 198:	71 1d       	adc	r23, r1
+ 19a:	77 23       	and	r23, r23
+ 19c:	14 f4       	brge	.+4      	; 0x1a2 <doPID+0x78>
+ 19e:	60 e0       	ldi	r22, 0x00	; 0
+ 1a0:	70 e0       	ldi	r23, 0x00	; 0
+ 1a2:	6f 3f       	cpi	r22, 0xFF	; 255
+ 1a4:	71 05       	cpc	r23, r1
+ 1a6:	19 f0       	breq	.+6      	; 0x1ae <doPID+0x84>
+ 1a8:	14 f0       	brlt	.+4      	; 0x1ae <doPID+0x84>
+ 1aa:	6f ef       	ldi	r22, 0xFF	; 255
+ 1ac:	70 e0       	ldi	r23, 0x00	; 0
+}
+
+void setMotorDuty(motor_t motor, uint8_t duty){
+	switch(motor){
+		case LEFT_MOTOR:
+		OCR1A = 255-duty;
+ 1ae:	8f ef       	ldi	r24, 0xFF	; 255
+ 1b0:	90 e0       	ldi	r25, 0x00	; 0
+ 1b2:	86 1b       	sub	r24, r22
+ 1b4:	91 09       	sbc	r25, r1
+ 1b6:	9b bd       	out	0x2b, r25	; 43
+ 1b8:	8a bd       	out	0x2a, r24	; 42
+ 1ba:	57 c0       	rjmp	.+174    	; 0x26a <doPID+0x140>
+		if(newSpeed < 0) newSpeed = 0;
+		if(newSpeed > 255) newSpeed = 255;
+		setMotorDuty(LEFT_MOTOR, (uint8_t)newSpeed);
+	}
+	else{
+		error = (int32_t)t_speed_right - (int32_t)speed_right;
+ 1bc:	e0 91 70 00 	lds	r30, 0x0070
+ 1c0:	f0 e0       	ldi	r31, 0x00	; 0
+ 1c2:	80 91 73 00 	lds	r24, 0x0073
+ 1c6:	e8 1b       	sub	r30, r24
+ 1c8:	f1 09       	sbc	r31, r1
+		I_right += error;
+ 1ca:	8f 01       	movw	r16, r30
+ 1cc:	22 27       	eor	r18, r18
+ 1ce:	17 fd       	sbrc	r17, 7
+ 1d0:	20 95       	com	r18
+ 1d2:	32 2f       	mov	r19, r18
+ 1d4:	40 91 60 00 	lds	r20, 0x0060
+ 1d8:	50 91 61 00 	lds	r21, 0x0061
+ 1dc:	60 91 62 00 	lds	r22, 0x0062
+ 1e0:	70 91 63 00 	lds	r23, 0x0063
+ 1e4:	40 0f       	add	r20, r16
+ 1e6:	51 1f       	adc	r21, r17
+ 1e8:	62 1f       	adc	r22, r18
+ 1ea:	73 1f       	adc	r23, r19
+		if(I_right > I_CAP) I_right = I_CAP;
+ 1ec:	49 3e       	cpi	r20, 0xE9	; 233
+ 1ee:	83 e0       	ldi	r24, 0x03	; 3
+ 1f0:	58 07       	cpc	r21, r24
+ 1f2:	61 05       	cpc	r22, r1
+ 1f4:	71 05       	cpc	r23, r1
+ 1f6:	4c f4       	brge	.+18     	; 0x20a <doPID+0xe0>
+		if(newSpeed > 255) newSpeed = 255;
+		setMotorDuty(LEFT_MOTOR, (uint8_t)newSpeed);
+	}
+	else{
+		error = (int32_t)t_speed_right - (int32_t)speed_right;
+		I_right += error;
+ 1f8:	40 93 60 00 	sts	0x0060, r20
+ 1fc:	50 93 61 00 	sts	0x0061, r21
+ 200:	60 93 62 00 	sts	0x0062, r22
+ 204:	70 93 63 00 	sts	0x0063, r23
+ 208:	0c c0       	rjmp	.+24     	; 0x222 <doPID+0xf8>
+		if(I_right > I_CAP) I_right = I_CAP;
+ 20a:	48 ee       	ldi	r20, 0xE8	; 232
+ 20c:	53 e0       	ldi	r21, 0x03	; 3
+ 20e:	60 e0       	ldi	r22, 0x00	; 0
+ 210:	70 e0       	ldi	r23, 0x00	; 0
+ 212:	40 93 60 00 	sts	0x0060, r20
+ 216:	50 93 61 00 	sts	0x0061, r21
+ 21a:	60 93 62 00 	sts	0x0062, r22
+ 21e:	70 93 63 00 	sts	0x0063, r23
+		break;
+	}
+}
+
+uint8_t getMotorDuty(motor_t motor){
+	return (motor==LEFT_MOTOR) ? 255-OCR1A : 255-OCR1B;
+ 222:	28 b5       	in	r18, 0x28	; 40
+ 224:	39 b5       	in	r19, 0x29	; 41
+	}
+	else{
+		error = (int32_t)t_speed_right - (int32_t)speed_right;
+		I_right += error;
+		if(I_right > I_CAP) I_right = I_CAP;
+		int16_t newSpeed = (P_GAIN*error)/1000 + (I_GAIN*I_right)/1000 + (int16_t)getMotorDuty(RIGHT_MOTOR);
+ 226:	cf 01       	movw	r24, r30
+ 228:	88 0f       	add	r24, r24
+ 22a:	99 1f       	adc	r25, r25
+ 22c:	ee 0f       	add	r30, r30
+ 22e:	ff 1f       	adc	r31, r31
+ 230:	ee 0f       	add	r30, r30
+ 232:	ff 1f       	adc	r31, r31
+ 234:	ee 0f       	add	r30, r30
+ 236:	ff 1f       	adc	r31, r31
+ 238:	8e 0f       	add	r24, r30
+ 23a:	9f 1f       	adc	r25, r31
+ 23c:	68 ee       	ldi	r22, 0xE8	; 232
+ 23e:	73 e0       	ldi	r23, 0x03	; 3
+ 240:	0e 94 1a 03 	call	0x634	; 0x634 <__divmodhi4>
+		break;
+	}
+}
+
+uint8_t getMotorDuty(motor_t motor){
+	return (motor==LEFT_MOTOR) ? 255-OCR1A : 255-OCR1B;
+ 244:	20 95       	com	r18
+	}
+	else{
+		error = (int32_t)t_speed_right - (int32_t)speed_right;
+		I_right += error;
+		if(I_right > I_CAP) I_right = I_CAP;
+		int16_t newSpeed = (P_GAIN*error)/1000 + (I_GAIN*I_right)/1000 + (int16_t)getMotorDuty(RIGHT_MOTOR);
+ 246:	62 0f       	add	r22, r18
+ 248:	71 1d       	adc	r23, r1
+ 24a:	77 23       	and	r23, r23
+ 24c:	14 f4       	brge	.+4      	; 0x252 <doPID+0x128>
+ 24e:	60 e0       	ldi	r22, 0x00	; 0
+ 250:	70 e0       	ldi	r23, 0x00	; 0
+ 252:	6f 3f       	cpi	r22, 0xFF	; 255
+ 254:	71 05       	cpc	r23, r1
+ 256:	19 f0       	breq	.+6      	; 0x25e <doPID+0x134>
+ 258:	14 f0       	brlt	.+4      	; 0x25e <doPID+0x134>
+ 25a:	6f ef       	ldi	r22, 0xFF	; 255
+ 25c:	70 e0       	ldi	r23, 0x00	; 0
+	switch(motor){
+		case LEFT_MOTOR:
+		OCR1A = 255-duty;
+		break;
+		case RIGHT_MOTOR:
+		OCR1B =255-duty;
+ 25e:	8f ef       	ldi	r24, 0xFF	; 255
+ 260:	90 e0       	ldi	r25, 0x00	; 0
+ 262:	86 1b       	sub	r24, r22
+ 264:	91 09       	sbc	r25, r1
+ 266:	99 bd       	out	0x29, r25	; 41
+ 268:	88 bd       	out	0x28, r24	; 40
+		if(newSpeed < 0) newSpeed = 0;
+		if(newSpeed > 255) newSpeed = 255;
+		setMotorDuty(RIGHT_MOTOR, (uint8_t)newSpeed);
+	}
+	return;	
+}
+ 26a:	1f 91       	pop	r17
+ 26c:	0f 91       	pop	r16
+ 26e:	08 95       	ret
+
+00000270 <calculateSpeed>:
+
+//function that calculates speed from measurements
+uint8_t calculateSpeed(uint8_t inttimes[][2], uint8_t*angles){
+ 270:	cf 92       	push	r12
+ 272:	df 92       	push	r13
+ 274:	ef 92       	push	r14
+ 276:	ff 92       	push	r15
+ 278:	0f 93       	push	r16
+ 27a:	1f 93       	push	r17
+ 27c:	cf 93       	push	r28
+ 27e:	df 93       	push	r29
+ 280:	6c 01       	movw	r12, r24
+ 282:	7b 01       	movw	r14, r22
+ 284:	8b 01       	movw	r16, r22
+ 286:	20 e0       	ldi	r18, 0x00	; 0
+ 288:	30 e0       	ldi	r19, 0x00	; 0
+	uint16_t total_time=0;
+ 28a:	c0 e0       	ldi	r28, 0x00	; 0
+ 28c:	d0 e0       	ldi	r29, 0x00	; 0
+ 28e:	f6 01       	movw	r30, r12
+ 290:	e2 0f       	add	r30, r18
+ 292:	f3 1f       	adc	r31, r19
+	uint8_t i;
+	for(i=0; i<NUM_ANGLE_PER_SPEED; i++){ //calculate the last set of angles
+		uint16_t high = (uint16_t)inttimes[i][0];
+ 294:	40 81       	ld	r20, Z
+ 296:	50 e0       	ldi	r21, 0x00	; 0
+		uint16_t total = high + (uint16_t)inttimes[i][1];
+ 298:	81 81       	ldd	r24, Z+1	; 0x01
+ 29a:	ba 01       	movw	r22, r20
+ 29c:	68 0f       	add	r22, r24
+ 29e:	71 1d       	adc	r23, r1
+		total_time += total;
+ 2a0:	c6 0f       	add	r28, r22
+ 2a2:	d7 1f       	adc	r29, r23
+		angles[i] = (uint8_t)((high<<8)/total); //angle in 1/256 of radians (roughly)
+ 2a4:	94 2f       	mov	r25, r20
+ 2a6:	80 e0       	ldi	r24, 0x00	; 0
+ 2a8:	0e 94 06 03 	call	0x60c	; 0x60c <__udivmodhi4>
+ 2ac:	f8 01       	movw	r30, r16
+ 2ae:	61 93       	st	Z+, r22
+ 2b0:	8f 01       	movw	r16, r30
+ 2b2:	2e 5f       	subi	r18, 0xFE	; 254
+ 2b4:	3f 4f       	sbci	r19, 0xFF	; 255
+
+//function that calculates speed from measurements
+uint8_t calculateSpeed(uint8_t inttimes[][2], uint8_t*angles){
+	uint16_t total_time=0;
+	uint8_t i;
+	for(i=0; i<NUM_ANGLE_PER_SPEED; i++){ //calculate the last set of angles
+ 2b6:	26 30       	cpi	r18, 0x06	; 6
+ 2b8:	31 05       	cpc	r19, r1
+ 2ba:	49 f7       	brne	.-46     	; 0x28e <calculateSpeed+0x1e>
+	}
+	//now, aggregate the angles
+	uint16_t total_angle=0;
+	
+	for(i=0; i<NUM_ANGLE_PER_SPEED-1; i++){
+		int16_t diff = (int16_t)angles[i+1] - (int16_t)angles[i];
+ 2bc:	f7 01       	movw	r30, r14
+ 2be:	41 81       	ldd	r20, Z+1	; 0x01
+ 2c0:	50 e0       	ldi	r21, 0x00	; 0
+ 2c2:	80 81       	ld	r24, Z
+ 2c4:	9a 01       	movw	r18, r20
+ 2c6:	28 1b       	sub	r18, r24
+ 2c8:	31 09       	sbc	r19, r1
+ 2ca:	c9 01       	movw	r24, r18
+ 2cc:	99 23       	and	r25, r25
+ 2ce:	24 f4       	brge	.+8      	; 0x2d8 <calculateSpeed+0x68>
+ 2d0:	88 27       	eor	r24, r24
+ 2d2:	99 27       	eor	r25, r25
+ 2d4:	82 1b       	sub	r24, r18
+ 2d6:	93 0b       	sbc	r25, r19
+ 2d8:	9c 01       	movw	r18, r24
+		if(diff<0) diff = -diff;
+		if(diff>128) diff = 256-diff;
+ 2da:	81 38       	cpi	r24, 0x81	; 129
+ 2dc:	91 05       	cpc	r25, r1
+ 2de:	24 f0       	brlt	.+8      	; 0x2e8 <calculateSpeed+0x78>
+ 2e0:	20 e0       	ldi	r18, 0x00	; 0
+ 2e2:	31 e0       	ldi	r19, 0x01	; 1
+ 2e4:	28 1b       	sub	r18, r24
+ 2e6:	39 0b       	sbc	r19, r25
+		total_angle += (uint16_t)diff;
+ 2e8:	b9 01       	movw	r22, r18
+	}
+	//now, aggregate the angles
+	uint16_t total_angle=0;
+	
+	for(i=0; i<NUM_ANGLE_PER_SPEED-1; i++){
+		int16_t diff = (int16_t)angles[i+1] - (int16_t)angles[i];
+ 2ea:	f7 01       	movw	r30, r14
+ 2ec:	82 81       	ldd	r24, Z+2	; 0x02
+ 2ee:	90 e0       	ldi	r25, 0x00	; 0
+ 2f0:	9c 01       	movw	r18, r24
+ 2f2:	24 1b       	sub	r18, r20
+ 2f4:	35 0b       	sbc	r19, r21
+ 2f6:	c9 01       	movw	r24, r18
+ 2f8:	99 23       	and	r25, r25
+ 2fa:	24 f4       	brge	.+8      	; 0x304 <calculateSpeed+0x94>
+ 2fc:	88 27       	eor	r24, r24
+ 2fe:	99 27       	eor	r25, r25
+ 300:	82 1b       	sub	r24, r18
+ 302:	93 0b       	sbc	r25, r19
+ 304:	9c 01       	movw	r18, r24
+		if(diff<0) diff = -diff;
+		if(diff>128) diff = 256-diff;
+ 306:	81 38       	cpi	r24, 0x81	; 129
+ 308:	91 05       	cpc	r25, r1
+ 30a:	24 f0       	brlt	.+8      	; 0x314 <calculateSpeed+0xa4>
+ 30c:	20 e0       	ldi	r18, 0x00	; 0
+ 30e:	31 e0       	ldi	r19, 0x01	; 1
+ 310:	28 1b       	sub	r18, r24
+ 312:	39 0b       	sbc	r19, r25
+		total_angle += (uint16_t)diff;
+ 314:	26 0f       	add	r18, r22
+ 316:	37 1f       	adc	r19, r23
+	}
+	//finally, calculate the speed.
+	uint16_t speed16 = total_angle*((SPEED_MULT)/(NUM_ANGLE_PER_SPEED*total_time));
+ 318:	be 01       	movw	r22, r28
+ 31a:	66 0f       	add	r22, r22
+ 31c:	77 1f       	adc	r23, r23
+ 31e:	6c 0f       	add	r22, r28
+ 320:	7d 1f       	adc	r23, r29
+ 322:	80 e0       	ldi	r24, 0x00	; 0
+ 324:	98 e0       	ldi	r25, 0x08	; 8
+ 326:	0e 94 06 03 	call	0x60c	; 0x60c <__udivmodhi4>
+ 32a:	26 9f       	mul	r18, r22
+ 32c:	c0 01       	movw	r24, r0
+ 32e:	27 9f       	mul	r18, r23
+ 330:	90 0d       	add	r25, r0
+ 332:	36 9f       	mul	r19, r22
+ 334:	90 0d       	add	r25, r0
+ 336:	11 24       	eor	r1, r1
+	if(speed16<SPEED_UNDER_THRESHOLD) return 0;
+ 338:	84 31       	cpi	r24, 0x14	; 20
+ 33a:	91 05       	cpc	r25, r1
+ 33c:	28 f0       	brcs	.+10     	; 0x348 <calculateSpeed+0xd8>
+	return (speed16>255) ? 255 : (uint8_t) speed16;	
+ 33e:	8f 3f       	cpi	r24, 0xFF	; 255
+ 340:	91 05       	cpc	r25, r1
+ 342:	09 f0       	breq	.+2      	; 0x346 <calculateSpeed+0xd6>
+ 344:	18 f4       	brcc	.+6      	; 0x34c <calculateSpeed+0xdc>
+ 346:	03 c0       	rjmp	.+6      	; 0x34e <calculateSpeed+0xde>
+		if(diff>128) diff = 256-diff;
+		total_angle += (uint16_t)diff;
+	}
+	//finally, calculate the speed.
+	uint16_t speed16 = total_angle*((SPEED_MULT)/(NUM_ANGLE_PER_SPEED*total_time));
+	if(speed16<SPEED_UNDER_THRESHOLD) return 0;
+ 348:	80 e0       	ldi	r24, 0x00	; 0
+ 34a:	01 c0       	rjmp	.+2      	; 0x34e <calculateSpeed+0xde>
+	return (speed16>255) ? 255 : (uint8_t) speed16;	
+ 34c:	8f ef       	ldi	r24, 0xFF	; 255
+}
+ 34e:	df 91       	pop	r29
+ 350:	cf 91       	pop	r28
+ 352:	1f 91       	pop	r17
+ 354:	0f 91       	pop	r16
+ 356:	ff 90       	pop	r15
+ 358:	ef 90       	pop	r14
+ 35a:	df 90       	pop	r13
+ 35c:	cf 90       	pop	r12
+ 35e:	08 95       	ret
+
+00000360 <updateSpeed>:
+
+//function that updates speed
+void updateSpeed(void){	
+	if(!do_right){ //if do_right is 0, we should update the right PID
+ 360:	80 91 75 00 	lds	r24, 0x0075
+ 364:	81 11       	cpse	r24, r1
+ 366:	15 c0       	rjmp	.+42     	; 0x392 <updateSpeed+0x32>
+		speed_right = calculateSpeed(intindex_right==0 ? &(inttimes_right[NUM_ANGLE_PER_SPEED]): inttimes_right, angles_right);
+ 368:	80 91 76 00 	lds	r24, 0x0076
+ 36c:	81 11       	cpse	r24, r1
+ 36e:	03 c0       	rjmp	.+6      	; 0x376 <updateSpeed+0x16>
+ 370:	88 e9       	ldi	r24, 0x98	; 152
+ 372:	90 e0       	ldi	r25, 0x00	; 0
+ 374:	02 c0       	rjmp	.+4      	; 0x37a <updateSpeed+0x1a>
+ 376:	82 e9       	ldi	r24, 0x92	; 146
+ 378:	90 e0       	ldi	r25, 0x00	; 0
+ 37a:	63 e8       	ldi	r22, 0x83	; 131
+ 37c:	70 e0       	ldi	r23, 0x00	; 0
+ 37e:	0e 94 38 01 	call	0x270	; 0x270 <calculateSpeed>
+ 382:	80 93 73 00 	sts	0x0073, r24
+		doPID(RIGHT_MOTOR);
+ 386:	81 e0       	ldi	r24, 0x01	; 1
+ 388:	0e 94 95 00 	call	0x12a	; 0x12a <doPID>
+		do_right = 1; //start counting again
+ 38c:	81 e0       	ldi	r24, 0x01	; 1
+ 38e:	80 93 75 00 	sts	0x0075, r24
+	}
+	if(!do_left){ //if do_right is 0, we should update the right PID
+ 392:	80 91 74 00 	lds	r24, 0x0074
+ 396:	81 11       	cpse	r24, r1
+ 398:	15 c0       	rjmp	.+42     	; 0x3c4 <updateSpeed+0x64>
+		speed_left = calculateSpeed(intindex_left==0 ? &(inttimes_left[NUM_ANGLE_PER_SPEED]): inttimes_left, angles_left);
+ 39a:	80 91 77 00 	lds	r24, 0x0077
+ 39e:	81 11       	cpse	r24, r1
+ 3a0:	03 c0       	rjmp	.+6      	; 0x3a8 <updateSpeed+0x48>
+ 3a2:	8c e8       	ldi	r24, 0x8C	; 140
+ 3a4:	90 e0       	ldi	r25, 0x00	; 0
+ 3a6:	02 c0       	rjmp	.+4      	; 0x3ac <updateSpeed+0x4c>
+ 3a8:	86 e8       	ldi	r24, 0x86	; 134
+ 3aa:	90 e0       	ldi	r25, 0x00	; 0
+ 3ac:	60 e8       	ldi	r22, 0x80	; 128
+ 3ae:	70 e0       	ldi	r23, 0x00	; 0
+ 3b0:	0e 94 38 01 	call	0x270	; 0x270 <calculateSpeed>
+ 3b4:	80 93 72 00 	sts	0x0072, r24
+		doPID(LEFT_MOTOR);
+ 3b8:	80 e0       	ldi	r24, 0x00	; 0
+ 3ba:	0e 94 95 00 	call	0x12a	; 0x12a <doPID>
+		do_left = 1; //start counting again
+ 3be:	81 e0       	ldi	r24, 0x01	; 1
+ 3c0:	80 93 74 00 	sts	0x0074, r24
+ 3c4:	08 95       	ret
+
+000003c6 <main>:
+void updateSpeed(void);
 void init(void);
 
 int main(void)
 {
 	init();
- 104:	0e 94 62 00 	call	0xc4	; 0xc4 <init>
- 108:	ff cf       	rjmp	.-2      	; 0x108 <main+0x4>
-
-0000010a <processI2CByte>:
+ 3c6:	0e 94 4f 00 	call	0x9e	; 0x9e <init>
 	
-	//global interrupts
-	sei();
-}
+    while(1){
+#ifndef OPEN_LOOP_CONTROL
+		updateSpeed();
+ 3ca:	0e 94 b0 01 	call	0x360	; 0x360 <updateSpeed>
+ 3ce:	fd cf       	rjmp	.-6      	; 0x3ca <main+0x4>
 
-void processI2CByte(){
- 10a:	cf 93       	push	r28
-	uint8_t byte = TWDR;
- 10c:	c3 b1       	in	r28, 0x03	; 3
-	//first byte: selects motor and direction.	
-	if(i2c_r_index==0){
- 10e:	80 91 67 00 	lds	r24, 0x0067
- 112:	81 11       	cpse	r24, r1
- 114:	0c c0       	rjmp	.+24     	; 0x12e <processI2CByte+0x24>
-		i2c_motor = (byte & MOTOR_BIT) ? LEFT_MOTOR : RIGHT_MOTOR;
- 116:	81 e0       	ldi	r24, 0x01	; 1
- 118:	c1 fb       	bst	r28, 1
- 11a:	99 27       	eor	r25, r25
- 11c:	90 f9       	bld	r25, 0
- 11e:	98 27       	eor	r25, r24
- 120:	90 93 61 00 	sts	0x0061, r25
-		i2c_direction = (byte & DIRECTION_BIT) ? FORWARD : BACKWARD;		
- 124:	c8 27       	eor	r28, r24
- 126:	c1 70       	andi	r28, 0x01	; 1
- 128:	c0 93 60 00 	sts	0x0060, r28
- 12c:	0d c0       	rjmp	.+26     	; 0x148 <processI2CByte+0x3e>
-	}
-	else if(i2c_r_index==1){
- 12e:	81 30       	cpi	r24, 0x01	; 1
- 130:	59 f4       	brne	.+22     	; 0x148 <processI2CByte+0x3e>
-		setMotorDirection(i2c_motor, i2c_direction);
- 132:	60 91 60 00 	lds	r22, 0x0060
- 136:	80 91 61 00 	lds	r24, 0x0061
- 13a:	0e 94 51 00 	call	0xa2	; 0xa2 <setMotorDirection>
-		setMotorDuty(i2c_motor, byte);
- 13e:	6c 2f       	mov	r22, r28
- 140:	80 91 61 00 	lds	r24, 0x0061
- 144:	0e 94 3e 00 	call	0x7c	; 0x7c <setMotorDuty>
+000003d0 <__vector_1>:
+		do_left = 1; //start counting again
 	}
 }
- 148:	cf 91       	pop	r28
- 14a:	08 95       	ret
 
-0000014c <__vector_19>:
+//interrupt handlers for external interrupts (get angle readings from motors)
+ISR(INT0_vect){ //right motor
+ 3d0:	1f 92       	push	r1
+ 3d2:	0f 92       	push	r0
+ 3d4:	0f b6       	in	r0, 0x3f	; 63
+ 3d6:	0f 92       	push	r0
+ 3d8:	11 24       	eor	r1, r1
+ 3da:	2f 93       	push	r18
+ 3dc:	3f 93       	push	r19
+ 3de:	4f 93       	push	r20
+ 3e0:	8f 93       	push	r24
+ 3e2:	9f 93       	push	r25
+ 3e4:	ef 93       	push	r30
+ 3e6:	ff 93       	push	r31
+	uint8_t sreg_save = SREG;
+ 3e8:	9f b7       	in	r25, 0x3f	; 63
+	cli();
+ 3ea:	f8 94       	cli
+	uint8_t current_value = TCNT0;
+ 3ec:	82 b7       	in	r24, 0x32	; 50
+	if(PIND & 0b00000100){ //just went HIGH
+ 3ee:	82 9b       	sbis	0x10, 2	; 16
+ 3f0:	21 c0       	rjmp	.+66     	; 0x434 <__vector_1+0x64>
+		//save value
+		inttimes_right[intindex_right][1] = (current_value - intref_right);
+ 3f2:	20 91 76 00 	lds	r18, 0x0076
+ 3f6:	e2 2f       	mov	r30, r18
+ 3f8:	f0 e0       	ldi	r31, 0x00	; 0
+ 3fa:	ee 0f       	add	r30, r30
+ 3fc:	ff 1f       	adc	r31, r31
+ 3fe:	ee 56       	subi	r30, 0x6E	; 110
+ 400:	ff 4f       	sbci	r31, 0xFF	; 255
+ 402:	30 91 78 00 	lds	r19, 0x0078
+ 406:	48 2f       	mov	r20, r24
+ 408:	43 1b       	sub	r20, r19
+ 40a:	41 83       	std	Z+1, r20	; 0x01
+		if(do_right) {
+ 40c:	30 91 75 00 	lds	r19, 0x0075
+ 410:	33 23       	and	r19, r19
+ 412:	e1 f0       	breq	.+56     	; 0x44c <__vector_1+0x7c>
+			intindex_right++; //move to next only if currently active
+ 414:	2f 5f       	subi	r18, 0xFF	; 255
+ 416:	20 93 76 00 	sts	0x0076, r18
+			if(intindex_right%NUM_ANGLE_PER_SPEED == 0) do_right = 0; //deactivate if we did enough measurements for next sample
+ 41a:	3b ea       	ldi	r19, 0xAB	; 171
+ 41c:	23 9f       	mul	r18, r19
+ 41e:	31 2d       	mov	r19, r1
+ 420:	11 24       	eor	r1, r1
+ 422:	36 95       	lsr	r19
+ 424:	43 2f       	mov	r20, r19
+ 426:	44 0f       	add	r20, r20
+ 428:	34 0f       	add	r19, r20
+ 42a:	23 13       	cpse	r18, r19
+ 42c:	0f c0       	rjmp	.+30     	; 0x44c <__vector_1+0x7c>
+ 42e:	10 92 75 00 	sts	0x0075, r1
+ 432:	0c c0       	rjmp	.+24     	; 0x44c <__vector_1+0x7c>
+		}
+	}
+	else{ //just went LOW
+		inttimes_right[intindex_right][0] = current_value - intref_right; //save value
+ 434:	e0 91 76 00 	lds	r30, 0x0076
+ 438:	f0 e0       	ldi	r31, 0x00	; 0
+ 43a:	ee 0f       	add	r30, r30
+ 43c:	ff 1f       	adc	r31, r31
+ 43e:	ee 56       	subi	r30, 0x6E	; 110
+ 440:	ff 4f       	sbci	r31, 0xFF	; 255
+ 442:	20 91 78 00 	lds	r18, 0x0078
+ 446:	38 2f       	mov	r19, r24
+ 448:	32 1b       	sub	r19, r18
+ 44a:	30 83       	st	Z, r19
+	}
+	intref_right = current_value;
+ 44c:	80 93 78 00 	sts	0x0078, r24
+	SREG = sreg_save;
+ 450:	9f bf       	out	0x3f, r25	; 63
+}
+ 452:	ff 91       	pop	r31
+ 454:	ef 91       	pop	r30
+ 456:	9f 91       	pop	r25
+ 458:	8f 91       	pop	r24
+ 45a:	4f 91       	pop	r20
+ 45c:	3f 91       	pop	r19
+ 45e:	2f 91       	pop	r18
+ 460:	0f 90       	pop	r0
+ 462:	0f be       	out	0x3f, r0	; 63
+ 464:	0f 90       	pop	r0
+ 466:	1f 90       	pop	r1
+ 468:	18 95       	reti
+
+0000046a <__vector_2>:
+ISR(INT1_vect){ //left motor
+ 46a:	1f 92       	push	r1
+ 46c:	0f 92       	push	r0
+ 46e:	0f b6       	in	r0, 0x3f	; 63
+ 470:	0f 92       	push	r0
+ 472:	11 24       	eor	r1, r1
+ 474:	2f 93       	push	r18
+ 476:	3f 93       	push	r19
+ 478:	4f 93       	push	r20
+ 47a:	8f 93       	push	r24
+ 47c:	9f 93       	push	r25
+ 47e:	ef 93       	push	r30
+ 480:	ff 93       	push	r31
+	uint8_t sreg_save = SREG;
+ 482:	9f b7       	in	r25, 0x3f	; 63
+	cli();
+ 484:	f8 94       	cli
+	uint8_t current_value = TCNT0;
+ 486:	82 b7       	in	r24, 0x32	; 50
+	if(PIND & 0b00000100){ //just went HIGH
+ 488:	82 9b       	sbis	0x10, 2	; 16
+ 48a:	21 c0       	rjmp	.+66     	; 0x4ce <__vector_2+0x64>
+		//save value
+		inttimes_left[intindex_left][1] = (current_value - intref_left);
+ 48c:	20 91 77 00 	lds	r18, 0x0077
+ 490:	e2 2f       	mov	r30, r18
+ 492:	f0 e0       	ldi	r31, 0x00	; 0
+ 494:	ee 0f       	add	r30, r30
+ 496:	ff 1f       	adc	r31, r31
+ 498:	ea 57       	subi	r30, 0x7A	; 122
+ 49a:	ff 4f       	sbci	r31, 0xFF	; 255
+ 49c:	30 91 79 00 	lds	r19, 0x0079
+ 4a0:	48 2f       	mov	r20, r24
+ 4a2:	43 1b       	sub	r20, r19
+ 4a4:	41 83       	std	Z+1, r20	; 0x01
+		if(do_left) {
+ 4a6:	30 91 74 00 	lds	r19, 0x0074
+ 4aa:	33 23       	and	r19, r19
+ 4ac:	e1 f0       	breq	.+56     	; 0x4e6 <__vector_2+0x7c>
+			intindex_left++; //move to next only if currently active
+ 4ae:	2f 5f       	subi	r18, 0xFF	; 255
+ 4b0:	20 93 77 00 	sts	0x0077, r18
+			if(intindex_left%NUM_ANGLE_PER_SPEED == 0) do_left = 0; //deactivate if we did enough measurements for next sample
+ 4b4:	3b ea       	ldi	r19, 0xAB	; 171
+ 4b6:	23 9f       	mul	r18, r19
+ 4b8:	31 2d       	mov	r19, r1
+ 4ba:	11 24       	eor	r1, r1
+ 4bc:	36 95       	lsr	r19
+ 4be:	43 2f       	mov	r20, r19
+ 4c0:	44 0f       	add	r20, r20
+ 4c2:	34 0f       	add	r19, r20
+ 4c4:	23 13       	cpse	r18, r19
+ 4c6:	0f c0       	rjmp	.+30     	; 0x4e6 <__vector_2+0x7c>
+ 4c8:	10 92 74 00 	sts	0x0074, r1
+ 4cc:	0c c0       	rjmp	.+24     	; 0x4e6 <__vector_2+0x7c>
+		}
+	}
+	else{ //just went LOW
+		inttimes_left[intindex_left][0] = current_value - intref_left; //save value
+ 4ce:	e0 91 77 00 	lds	r30, 0x0077
+ 4d2:	f0 e0       	ldi	r31, 0x00	; 0
+ 4d4:	ee 0f       	add	r30, r30
+ 4d6:	ff 1f       	adc	r31, r31
+ 4d8:	ea 57       	subi	r30, 0x7A	; 122
+ 4da:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4dc:	20 91 79 00 	lds	r18, 0x0079
+ 4e0:	38 2f       	mov	r19, r24
+ 4e2:	32 1b       	sub	r19, r18
+ 4e4:	30 83       	st	Z, r19
+	}
+	intref_left = current_value;
+ 4e6:	80 93 79 00 	sts	0x0079, r24
+	SREG = sreg_save;
+ 4ea:	9f bf       	out	0x3f, r25	; 63
+}
+ 4ec:	ff 91       	pop	r31
+ 4ee:	ef 91       	pop	r30
+ 4f0:	9f 91       	pop	r25
+ 4f2:	8f 91       	pop	r24
+ 4f4:	4f 91       	pop	r20
+ 4f6:	3f 91       	pop	r19
+ 4f8:	2f 91       	pop	r18
+ 4fa:	0f 90       	pop	r0
+ 4fc:	0f be       	out	0x3f, r0	; 63
+ 4fe:	0f 90       	pop	r0
+ 500:	1f 90       	pop	r1
+ 502:	18 95       	reti
+
+00000504 <__vector_19>:
 
 //interrupt handler for I2C slave operation
 ISR(TWI_vect){	
- 14c:	1f 92       	push	r1
- 14e:	0f 92       	push	r0
- 150:	0f b6       	in	r0, 0x3f	; 63
- 152:	0f 92       	push	r0
- 154:	11 24       	eor	r1, r1
- 156:	2f 93       	push	r18
- 158:	3f 93       	push	r19
- 15a:	4f 93       	push	r20
- 15c:	5f 93       	push	r21
- 15e:	6f 93       	push	r22
- 160:	7f 93       	push	r23
- 162:	8f 93       	push	r24
- 164:	9f 93       	push	r25
- 166:	af 93       	push	r26
- 168:	bf 93       	push	r27
- 16a:	cf 93       	push	r28
- 16c:	ef 93       	push	r30
- 16e:	ff 93       	push	r31
+ 504:	1f 92       	push	r1
+ 506:	0f 92       	push	r0
+ 508:	0f b6       	in	r0, 0x3f	; 63
+ 50a:	0f 92       	push	r0
+ 50c:	11 24       	eor	r1, r1
+ 50e:	2f 93       	push	r18
+ 510:	3f 93       	push	r19
+ 512:	4f 93       	push	r20
+ 514:	5f 93       	push	r21
+ 516:	6f 93       	push	r22
+ 518:	7f 93       	push	r23
+ 51a:	8f 93       	push	r24
+ 51c:	9f 93       	push	r25
+ 51e:	af 93       	push	r26
+ 520:	bf 93       	push	r27
+ 522:	cf 93       	push	r28
+ 524:	ef 93       	push	r30
+ 526:	ff 93       	push	r31
 	uint8_t sreg_save = SREG;
- 170:	cf b7       	in	r28, 0x3f	; 63
+ 528:	cf b7       	in	r28, 0x3f	; 63
 	cli();
- 172:	f8 94       	cli
+ 52a:	f8 94       	cli
 	switch(TW_STATUS){
- 174:	81 b1       	in	r24, 0x01	; 1
- 176:	88 7f       	andi	r24, 0xF8	; 248
- 178:	88 38       	cpi	r24, 0x88	; 136
- 17a:	a1 f1       	breq	.+104    	; 0x1e4 <__vector_19+0x98>
- 17c:	60 f4       	brcc	.+24     	; 0x196 <__vector_19+0x4a>
- 17e:	80 36       	cpi	r24, 0x60	; 96
- 180:	b9 f0       	breq	.+46     	; 0x1b0 <__vector_19+0x64>
- 182:	20 f4       	brcc	.+8      	; 0x18c <__vector_19+0x40>
- 184:	88 23       	and	r24, r24
- 186:	09 f4       	brne	.+2      	; 0x18a <__vector_19+0x3e>
- 188:	50 c0       	rjmp	.+160    	; 0x22a <__vector_19+0xde>
- 18a:	51 c0       	rjmp	.+162    	; 0x22e <__vector_19+0xe2>
- 18c:	88 36       	cpi	r24, 0x68	; 104
- 18e:	21 f1       	breq	.+72     	; 0x1d8 <__vector_19+0x8c>
- 190:	80 38       	cpi	r24, 0x80	; 128
- 192:	99 f0       	breq	.+38     	; 0x1ba <__vector_19+0x6e>
- 194:	4c c0       	rjmp	.+152    	; 0x22e <__vector_19+0xe2>
- 196:	88 3b       	cpi	r24, 0xB8	; 184
- 198:	89 f1       	breq	.+98     	; 0x1fc <__vector_19+0xb0>
- 19a:	28 f4       	brcc	.+10     	; 0x1a6 <__vector_19+0x5a>
- 19c:	80 3a       	cpi	r24, 0xA0	; 160
- 19e:	f9 f0       	breq	.+62     	; 0x1de <__vector_19+0x92>
- 1a0:	88 3a       	cpi	r24, 0xA8	; 168
- 1a2:	19 f1       	breq	.+70     	; 0x1ea <__vector_19+0x9e>
- 1a4:	44 c0       	rjmp	.+136    	; 0x22e <__vector_19+0xe2>
- 1a6:	80 3c       	cpi	r24, 0xC0	; 192
- 1a8:	e9 f1       	breq	.+122    	; 0x224 <__vector_19+0xd8>
- 1aa:	88 3c       	cpi	r24, 0xC8	; 200
- 1ac:	d9 f1       	breq	.+118    	; 0x224 <__vector_19+0xd8>
- 1ae:	3f c0       	rjmp	.+126    	; 0x22e <__vector_19+0xe2>
+ 52c:	81 b1       	in	r24, 0x01	; 1
+ 52e:	88 7f       	andi	r24, 0xF8	; 248
+ 530:	88 38       	cpi	r24, 0x88	; 136
+ 532:	a1 f1       	breq	.+104    	; 0x59c <__vector_19+0x98>
+ 534:	60 f4       	brcc	.+24     	; 0x54e <__vector_19+0x4a>
+ 536:	80 36       	cpi	r24, 0x60	; 96
+ 538:	b9 f0       	breq	.+46     	; 0x568 <__vector_19+0x64>
+ 53a:	20 f4       	brcc	.+8      	; 0x544 <__vector_19+0x40>
+ 53c:	88 23       	and	r24, r24
+ 53e:	09 f4       	brne	.+2      	; 0x542 <__vector_19+0x3e>
+ 540:	50 c0       	rjmp	.+160    	; 0x5e2 <__vector_19+0xde>
+ 542:	51 c0       	rjmp	.+162    	; 0x5e6 <__vector_19+0xe2>
+ 544:	88 36       	cpi	r24, 0x68	; 104
+ 546:	21 f1       	breq	.+72     	; 0x590 <__vector_19+0x8c>
+ 548:	80 38       	cpi	r24, 0x80	; 128
+ 54a:	99 f0       	breq	.+38     	; 0x572 <__vector_19+0x6e>
+ 54c:	4c c0       	rjmp	.+152    	; 0x5e6 <__vector_19+0xe2>
+ 54e:	88 3b       	cpi	r24, 0xB8	; 184
+ 550:	89 f1       	breq	.+98     	; 0x5b4 <__vector_19+0xb0>
+ 552:	28 f4       	brcc	.+10     	; 0x55e <__vector_19+0x5a>
+ 554:	80 3a       	cpi	r24, 0xA0	; 160
+ 556:	f9 f0       	breq	.+62     	; 0x596 <__vector_19+0x92>
+ 558:	88 3a       	cpi	r24, 0xA8	; 168
+ 55a:	19 f1       	breq	.+70     	; 0x5a2 <__vector_19+0x9e>
+ 55c:	44 c0       	rjmp	.+136    	; 0x5e6 <__vector_19+0xe2>
+ 55e:	80 3c       	cpi	r24, 0xC0	; 192
+ 560:	e9 f1       	breq	.+122    	; 0x5dc <__vector_19+0xd8>
+ 562:	88 3c       	cpi	r24, 0xC8	; 200
+ 564:	d9 f1       	breq	.+118    	; 0x5dc <__vector_19+0xd8>
+ 566:	3f c0       	rjmp	.+126    	; 0x5e6 <__vector_19+0xe2>
 		//--------------Slave receiver------------------------------------
 		//SLA_W received and acked, prepare for data receiving
 		case 0x60:
 		TWACK;
- 1b0:	85 ec       	ldi	r24, 0xC5	; 197
- 1b2:	86 bf       	out	0x36, r24	; 54
+ 568:	85 ec       	ldi	r24, 0xC5	; 197
+ 56a:	86 bf       	out	0x36, r24	; 54
 		i2c_r_index = 0;
- 1b4:	10 92 67 00 	sts	0x0067, r1
+ 56c:	10 92 6f 00 	sts	0x006F, r1
 		break;
- 1b8:	3a c0       	rjmp	.+116    	; 0x22e <__vector_19+0xe2>
+ 570:	3a c0       	rjmp	.+116    	; 0x5e6 <__vector_19+0xe2>
 		case 0x80:  //a byte was received, store it and
 		//setup the buffer to recieve another
 		//i2c_r[i2c_r_index] = TWDR;
 		processI2CByte();
- 1ba:	0e 94 85 00 	call	0x10a	; 0x10a <processI2CByte>
+ 572:	0e 94 7b 00 	call	0xf6	; 0xf6 <processI2CByte>
 		i2c_r_index++;
- 1be:	80 91 67 00 	lds	r24, 0x0067
- 1c2:	8f 5f       	subi	r24, 0xFF	; 255
- 1c4:	80 93 67 00 	sts	0x0067, r24
+ 576:	80 91 6f 00 	lds	r24, 0x006F
+ 57a:	8f 5f       	subi	r24, 0xFF	; 255
+ 57c:	80 93 6f 00 	sts	0x006F, r24
 		//don't ack next data if buffer is full
 		if(i2c_r_index >= I2C_BUFSIZE_RECV){
- 1c8:	86 30       	cpi	r24, 0x06	; 6
- 1ca:	18 f0       	brcs	.+6      	; 0x1d2 <__vector_19+0x86>
+ 580:	86 30       	cpi	r24, 0x06	; 6
+ 582:	18 f0       	brcs	.+6      	; 0x58a <__vector_19+0x86>
 			TWNACK;
- 1cc:	85 e8       	ldi	r24, 0x85	; 133
- 1ce:	86 bf       	out	0x36, r24	; 54
- 1d0:	2e c0       	rjmp	.+92     	; 0x22e <__vector_19+0xe2>
+ 584:	85 e8       	ldi	r24, 0x85	; 133
+ 586:	86 bf       	out	0x36, r24	; 54
+ 588:	2e c0       	rjmp	.+92     	; 0x5e6 <__vector_19+0xe2>
 			}else {
 			TWACK;
- 1d2:	85 ec       	ldi	r24, 0xC5	; 197
- 1d4:	86 bf       	out	0x36, r24	; 54
- 1d6:	2b c0       	rjmp	.+86     	; 0x22e <__vector_19+0xe2>
+ 58a:	85 ec       	ldi	r24, 0xC5	; 197
+ 58c:	86 bf       	out	0x36, r24	; 54
+ 58e:	2b c0       	rjmp	.+86     	; 0x5e6 <__vector_19+0xe2>
 		}
 		break;
 		case 0x68://adressed as slave while in master mode.
 		//should never happen, better reset;
 		i2c_rst=1;
- 1d8:	81 e0       	ldi	r24, 0x01	; 1
- 1da:	80 93 66 00 	sts	0x0066, r24
+ 590:	81 e0       	ldi	r24, 0x01	; 1
+ 592:	80 93 6e 00 	sts	0x006E, r24
 		case 0xA0: //Stop or rep start, reset state machine
 		TWACK;
- 1de:	85 ec       	ldi	r24, 0xC5	; 197
- 1e0:	86 bf       	out	0x36, r24	; 54
+ 596:	85 ec       	ldi	r24, 0xC5	; 197
+ 598:	86 bf       	out	0x36, r24	; 54
 		break;
- 1e2:	25 c0       	rjmp	.+74     	; 0x22e <__vector_19+0xe2>
+ 59a:	25 c0       	rjmp	.+74     	; 0x5e6 <__vector_19+0xe2>
 		//-------------- error recovery ----------------------------------
 		case 0x88: //data received  but not acked
 		//should not happen if the master is behaving as expected
 		//switch to not adressed mode
 		TWACK;
- 1e4:	85 ec       	ldi	r24, 0xC5	; 197
- 1e6:	86 bf       	out	0x36, r24	; 54
+ 59c:	85 ec       	ldi	r24, 0xC5	; 197
+ 59e:	86 bf       	out	0x36, r24	; 54
 		break;
- 1e8:	22 c0       	rjmp	.+68     	; 0x22e <__vector_19+0xe2>
+ 5a0:	22 c0       	rjmp	.+68     	; 0x5e6 <__vector_19+0xe2>
 		//---------------Slave Transmitter--------------------------------
 		case 0xA8:  //SLA R received, prep for transmission
 		//and load first data
 		i2c_t_index=1;
- 1ea:	81 e0       	ldi	r24, 0x01	; 1
- 1ec:	80 93 65 00 	sts	0x0065, r24
+ 5a2:	81 e0       	ldi	r24, 0x01	; 1
+ 5a4:	80 93 6d 00 	sts	0x006D, r24
 		TWDR = i2c_t[0];
- 1f0:	80 91 62 00 	lds	r24, 0x0062
- 1f4:	83 b9       	out	0x03, r24	; 3
+ 5a8:	80 91 6a 00 	lds	r24, 0x006A
+ 5ac:	83 b9       	out	0x03, r24	; 3
 		TWACK;
- 1f6:	85 ec       	ldi	r24, 0xC5	; 197
- 1f8:	86 bf       	out	0x36, r24	; 54
+ 5ae:	85 ec       	ldi	r24, 0xC5	; 197
+ 5b0:	86 bf       	out	0x36, r24	; 54
 		break;
- 1fa:	19 c0       	rjmp	.+50     	; 0x22e <__vector_19+0xe2>
+ 5b2:	19 c0       	rjmp	.+50     	; 0x5e6 <__vector_19+0xe2>
 		case 0xB8:  //data transmitted and acked by master, load next
 		TWDR = i2c_t[i2c_t_index];
- 1fc:	e0 91 65 00 	lds	r30, 0x0065
- 200:	f0 e0       	ldi	r31, 0x00	; 0
- 202:	ee 59       	subi	r30, 0x9E	; 158
- 204:	ff 4f       	sbci	r31, 0xFF	; 255
- 206:	80 81       	ld	r24, Z
- 208:	83 b9       	out	0x03, r24	; 3
+ 5b4:	e0 91 6d 00 	lds	r30, 0x006D
+ 5b8:	f0 e0       	ldi	r31, 0x00	; 0
+ 5ba:	e6 59       	subi	r30, 0x96	; 150
+ 5bc:	ff 4f       	sbci	r31, 0xFF	; 255
+ 5be:	80 81       	ld	r24, Z
+ 5c0:	83 b9       	out	0x03, r24	; 3
 		i2c_t_index++;
- 20a:	80 91 65 00 	lds	r24, 0x0065
- 20e:	8f 5f       	subi	r24, 0xFF	; 255
- 210:	80 93 65 00 	sts	0x0065, r24
+ 5c2:	80 91 6d 00 	lds	r24, 0x006D
+ 5c6:	8f 5f       	subi	r24, 0xFF	; 255
+ 5c8:	80 93 6d 00 	sts	0x006D, r24
 		//designate last byte if we're at the end of the buffer
 		if(i2c_t_index >= I2C_BUFSIZE_TRAN) TWNACK;
- 214:	83 30       	cpi	r24, 0x03	; 3
- 216:	18 f0       	brcs	.+6      	; 0x21e <__vector_19+0xd2>
- 218:	85 e8       	ldi	r24, 0x85	; 133
- 21a:	86 bf       	out	0x36, r24	; 54
- 21c:	08 c0       	rjmp	.+16     	; 0x22e <__vector_19+0xe2>
+ 5cc:	83 30       	cpi	r24, 0x03	; 3
+ 5ce:	18 f0       	brcs	.+6      	; 0x5d6 <__vector_19+0xd2>
+ 5d0:	85 e8       	ldi	r24, 0x85	; 133
+ 5d2:	86 bf       	out	0x36, r24	; 54
+ 5d4:	08 c0       	rjmp	.+16     	; 0x5e6 <__vector_19+0xe2>
 		else TWACK;
- 21e:	85 ec       	ldi	r24, 0xC5	; 197
- 220:	86 bf       	out	0x36, r24	; 54
- 222:	05 c0       	rjmp	.+10     	; 0x22e <__vector_19+0xe2>
+ 5d6:	85 ec       	ldi	r24, 0xC5	; 197
+ 5d8:	86 bf       	out	0x36, r24	; 54
+ 5da:	05 c0       	rjmp	.+10     	; 0x5e6 <__vector_19+0xe2>
 		case 0xC8: //last byte send and acked by master
 		//last bytes should not be acked, ignore till start/stop
 		//reset=1;
 		case 0xC0: //last byte send and nacked by master
 		//(as should be)
 		TWACK;
- 224:	85 ec       	ldi	r24, 0xC5	; 197
- 226:	86 bf       	out	0x36, r24	; 54
+ 5dc:	85 ec       	ldi	r24, 0xC5	; 197
+ 5de:	86 bf       	out	0x36, r24	; 54
 		break;
- 228:	02 c0       	rjmp	.+4      	; 0x22e <__vector_19+0xe2>
+ 5e0:	02 c0       	rjmp	.+4      	; 0x5e6 <__vector_19+0xe2>
 		//--------------------- bus error---------------------------------
 		//illegal start or stop received, reset the I2C hardware
 		case 0x00:
 		TWRESET;
- 22a:	85 ed       	ldi	r24, 0xD5	; 213
- 22c:	86 bf       	out	0x36, r24	; 54
+ 5e2:	85 ed       	ldi	r24, 0xD5	; 213
+ 5e4:	86 bf       	out	0x36, r24	; 54
 		break;
 	}
 	SREG = sreg_save;
- 22e:	cf bf       	out	0x3f, r28	; 63
- 230:	ff 91       	pop	r31
- 232:	ef 91       	pop	r30
- 234:	cf 91       	pop	r28
- 236:	bf 91       	pop	r27
- 238:	af 91       	pop	r26
- 23a:	9f 91       	pop	r25
- 23c:	8f 91       	pop	r24
- 23e:	7f 91       	pop	r23
- 240:	6f 91       	pop	r22
- 242:	5f 91       	pop	r21
- 244:	4f 91       	pop	r20
- 246:	3f 91       	pop	r19
- 248:	2f 91       	pop	r18
- 24a:	0f 90       	pop	r0
- 24c:	0f be       	out	0x3f, r0	; 63
- 24e:	0f 90       	pop	r0
- 250:	1f 90       	pop	r1
- 252:	18 95       	reti
+ 5e6:	cf bf       	out	0x3f, r28	; 63
+ 5e8:	ff 91       	pop	r31
+ 5ea:	ef 91       	pop	r30
+ 5ec:	cf 91       	pop	r28
+ 5ee:	bf 91       	pop	r27
+ 5f0:	af 91       	pop	r26
+ 5f2:	9f 91       	pop	r25
+ 5f4:	8f 91       	pop	r24
+ 5f6:	7f 91       	pop	r23
+ 5f8:	6f 91       	pop	r22
+ 5fa:	5f 91       	pop	r21
+ 5fc:	4f 91       	pop	r20
+ 5fe:	3f 91       	pop	r19
+ 600:	2f 91       	pop	r18
+ 602:	0f 90       	pop	r0
+ 604:	0f be       	out	0x3f, r0	; 63
+ 606:	0f 90       	pop	r0
+ 608:	1f 90       	pop	r1
+ 60a:	18 95       	reti
 
-00000254 <_exit>:
- 254:	f8 94       	cli
+0000060c <__udivmodhi4>:
+ 60c:	aa 1b       	sub	r26, r26
+ 60e:	bb 1b       	sub	r27, r27
+ 610:	51 e1       	ldi	r21, 0x11	; 17
+ 612:	07 c0       	rjmp	.+14     	; 0x622 <__udivmodhi4_ep>
 
-00000256 <__stop_program>:
- 256:	ff cf       	rjmp	.-2      	; 0x256 <__stop_program>
+00000614 <__udivmodhi4_loop>:
+ 614:	aa 1f       	adc	r26, r26
+ 616:	bb 1f       	adc	r27, r27
+ 618:	a6 17       	cp	r26, r22
+ 61a:	b7 07       	cpc	r27, r23
+ 61c:	10 f0       	brcs	.+4      	; 0x622 <__udivmodhi4_ep>
+ 61e:	a6 1b       	sub	r26, r22
+ 620:	b7 0b       	sbc	r27, r23
+
+00000622 <__udivmodhi4_ep>:
+ 622:	88 1f       	adc	r24, r24
+ 624:	99 1f       	adc	r25, r25
+ 626:	5a 95       	dec	r21
+ 628:	a9 f7       	brne	.-22     	; 0x614 <__udivmodhi4_loop>
+ 62a:	80 95       	com	r24
+ 62c:	90 95       	com	r25
+ 62e:	bc 01       	movw	r22, r24
+ 630:	cd 01       	movw	r24, r26
+ 632:	08 95       	ret
+
+00000634 <__divmodhi4>:
+ 634:	97 fb       	bst	r25, 7
+ 636:	07 2e       	mov	r0, r23
+ 638:	16 f4       	brtc	.+4      	; 0x63e <__divmodhi4+0xa>
+ 63a:	00 94       	com	r0
+ 63c:	07 d0       	rcall	.+14     	; 0x64c <__divmodhi4_neg1>
+ 63e:	77 fd       	sbrc	r23, 7
+ 640:	09 d0       	rcall	.+18     	; 0x654 <__divmodhi4_neg2>
+ 642:	0e 94 06 03 	call	0x60c	; 0x60c <__udivmodhi4>
+ 646:	07 fc       	sbrc	r0, 7
+ 648:	05 d0       	rcall	.+10     	; 0x654 <__divmodhi4_neg2>
+ 64a:	3e f4       	brtc	.+14     	; 0x65a <__divmodhi4_exit>
+
+0000064c <__divmodhi4_neg1>:
+ 64c:	90 95       	com	r25
+ 64e:	81 95       	neg	r24
+ 650:	9f 4f       	sbci	r25, 0xFF	; 255
+ 652:	08 95       	ret
+
+00000654 <__divmodhi4_neg2>:
+ 654:	70 95       	com	r23
+ 656:	61 95       	neg	r22
+ 658:	7f 4f       	sbci	r23, 0xFF	; 255
+
+0000065a <__divmodhi4_exit>:
+ 65a:	08 95       	ret
+
+0000065c <_exit>:
+ 65c:	f8 94       	cli
+
+0000065e <__stop_program>:
+ 65e:	ff cf       	rjmp	.-2      	; 0x65e <__stop_program>
