@@ -58,7 +58,7 @@ void initMotors(void){
 	setMotorDuty(RIGHT_MOTOR, 0);
 #ifndef OPEN_LOOP_CONTROL
 	setMotorSpeed(LEFT_MOTOR, 0);
-	setMotorSpeed(RIGHT_MOTOR, 100);
+	setMotorSpeed(RIGHT_MOTOR, 0);
 #endif
 	
 	//Init Timers	
@@ -85,6 +85,18 @@ void setMotorSpeed(motor_t motor, uint8_t speed){
 		t_speed_right = speed;
 		break;
 	}
+}
+
+uint8_t getMotorSpeed(motor_t motor){
+	switch(motor){
+		case LEFT_MOTOR:
+		return t_speed_left;
+		break;
+		case RIGHT_MOTOR:
+		return t_speed_right;
+		break;
+	}	
+	return 0;
 }
 
 uint8_t getMotorDuty(motor_t motor){
@@ -125,6 +137,7 @@ void setMotorDirection(motor_t motor, direction_t direction){
 		}
 		if(direction==FORWARD) PORTA |= 0b00000001;
 		else PORTA &= 0b11111110;
+		left_dir = direction;
 		break;
 		case RIGHT_MOTOR:
 		if(direction != right_dir){
@@ -133,6 +146,7 @@ void setMotorDirection(motor_t motor, direction_t direction){
 		}
 		if(direction==FORWARD) PORTA &= 0b11111101;
 		else PORTA |= 0b00000010;
+		right_dir = direction;
 		break;
 	}
 }
@@ -208,7 +222,7 @@ ISR(INT1_vect){ //left motor
 	uint8_t sreg_save = SREG;
 	cli();
 	uint8_t current_value = TCNT0;
-	if(PIND & 0b00000100){ //just went HIGH
+	if(PIND & 0b00001000){ //just went HIGH
 		uint8_t temp = intref_left[1]-intref_left[0];
 		uint8_t temp2 = current_value-intref_left[1];
 		uint16_t temp4 = temp2+temp;

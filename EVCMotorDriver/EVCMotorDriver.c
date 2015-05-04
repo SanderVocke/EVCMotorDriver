@@ -75,21 +75,24 @@ int main(void)
 }
 
 //input handlers
-void onIN1(void){ //stop the motors.
-	setMotorSpeed(LEFT_MOTOR, 0);
-	setMotorSpeed(RIGHT_MOTOR, 0);
+void onIN1(void){ //switches between (stop, forward, backward).
+	if(getMotorSpeed(LEFT_MOTOR) == 0){
+		setMotorDirection(LEFT_MOTOR, FORWARD);
+		setMotorSpeed(LEFT_MOTOR, 50);
+	}
+	else if(getMotorDirection(LEFT_MOTOR) == FORWARD) setMotorDirection(LEFT_MOTOR, BACKWARD);
+	else setMotorSpeed(LEFT_MOTOR, 0);
+	
+	if(getMotorSpeed(RIGHT_MOTOR) == 0){
+		setMotorDirection(RIGHT_MOTOR, FORWARD);
+		setMotorSpeed(RIGHT_MOTOR, 50);
+	}
+	else if(getMotorDirection(RIGHT_MOTOR) == FORWARD) setMotorDirection(RIGHT_MOTOR, BACKWARD);
+	else setMotorSpeed(RIGHT_MOTOR, 0);
 }
-void onIN2(void){
-	if(t_speed_right == 0 || t_speed_left == 0){ //if stopped, this button starts the motors
-		setMotorSpeed(LEFT_MOTOR, 100);
-		setMotorSpeed(RIGHT_MOTOR, 100);
-	}
-	else{ //if running, this button changes the direction.
-		if(getMotorDirection(LEFT_MOTOR) == FORWARD) setMotorDirection(LEFT_MOTOR, BACKWARD);
-		else setMotorDirection(LEFT_MOTOR, FORWARD);
-		if(getMotorDirection(RIGHT_MOTOR) == FORWARD) setMotorDirection(RIGHT_MOTOR, BACKWARD);
-		else setMotorDirection(RIGHT_MOTOR, FORWARD);
-	}
+void onIN2(void){ //change speed
+	t_speed_left += 20;
+	t_speed_right += 20;
 }
 
 void updateInputs(void){

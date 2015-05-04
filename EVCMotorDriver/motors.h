@@ -17,7 +17,7 @@
 //#define OPEN_LOOP_CONTROL //disables PID and does direct control instead
 #define DIV_SPEED_TIMER 40
 #define MIN_SPEED 20
-//#define STORE_ANGLES
+#define STORE_ANGLES
 #define NUM_STORE_ANGLES 32
 #define P_GAIN 800 //of 1000
 #define I_GAIN 100 //of 1000
@@ -65,5 +65,6 @@ void updateSpeed(void);
 void initMotors(void);
 void setMotorDuty(motor_t motor, uint8_t duty);
 void setMotorSpeed(motor_t motor, uint8_t speed);
+uint8_t getMotorSpeed(motor_t motor);
 
 #endif /* MOTORS_H_ */
