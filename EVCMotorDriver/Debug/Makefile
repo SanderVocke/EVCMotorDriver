@@ -37,7 +37,8 @@ SUBDIRS :=
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
-../EVCMotorDriver.c
+../EVCMotorDriver.c \
+../motors.c
 
 
 PREPROCESSING_SRCS += 
@@ -47,16 +48,20 @@ ASM_SRCS +=
 
 
 OBJS +=  \
-EVCMotorDriver.o
+EVCMotorDriver.o \
+motors.o
 
 OBJS_AS_ARGS +=  \
-EVCMotorDriver.o
+EVCMotorDriver.o \
+motors.o
 
 C_DEPS +=  \
-EVCMotorDriver.d
+EVCMotorDriver.d \
+motors.d
 
 C_DEPS_AS_ARGS +=  \
-EVCMotorDriver.d
+EVCMotorDriver.d \
+motors.d
 
 OUTPUT_FILE_PATH +=EVCMotorDriver.elf
 
@@ -72,6 +77,8 @@ LINKER_SCRIPT_DEP+=
 
 
 # AVR32/GNU C Compiler
+
+
 
 
 

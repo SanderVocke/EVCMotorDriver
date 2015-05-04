@@ -1,19 +1,17 @@
 Archive member included because of file (symbol)
 
 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodhi4.o)
-                              EVCMotorDriver.o (__udivmodhi4)
+                              motors.o (__udivmodhi4)
 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_divmodsi4.o)
-                              EVCMotorDriver.o (__divmodsi4)
+                              motors.o (__divmodsi4)
 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_negsi2.o)
                               d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_divmodsi4.o) (__negsi2)
 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
                               d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32.o (exit)
-d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
-                              EVCMotorDriver.o (__do_copy_data)
 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_clear_bss.o)
                               EVCMotorDriver.o (__do_clear_bss)
 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_muluhisi3.o)
-                              EVCMotorDriver.o (__muluhisi3)
+                              motors.o (__muluhisi3)
 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodsi4.o)
                               d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_divmodsi4.o) (__udivmodsi4)
 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_umulhisi3.o)
@@ -23,9 +21,29 @@ Allocating common symbols
 Common symbol       size              file
 
 newSpeed            0x4               EVCMotorDriver.o
-angles              0x80              EVCMotorDriver.o
+lastangle_left      0x2               EVCMotorDriver.o
+doUpdate            0x1               EVCMotorDriver.o
+left_dir            0x1               EVCMotorDriver.o
+t_speed_right       0x1               EVCMotorDriver.o
+prescaler           0x1               EVCMotorDriver.o
+speed_right         0x1               EVCMotorDriver.o
+ticks_right         0x1               EVCMotorDriver.o
 i2c_r               0x6               EVCMotorDriver.o
+I_left              0x4               EVCMotorDriver.o
+lasterror_left      0x4               EVCMotorDriver.o
+do_ticks            0x1               EVCMotorDriver.o
+speed_left          0x1               EVCMotorDriver.o
+ticks_left          0x1               EVCMotorDriver.o
+duty_left           0x1               EVCMotorDriver.o
+intref_left         0x3               EVCMotorDriver.o
+lasterror_right     0x4               EVCMotorDriver.o
+t_speed_left        0x1               EVCMotorDriver.o
+I_right             0x4               EVCMotorDriver.o
+right_dir           0x1               EVCMotorDriver.o
 error               0x4               EVCMotorDriver.o
+intref_right        0x3               EVCMotorDriver.o
+duty_right          0x1               EVCMotorDriver.o
+lastangle_right     0x2               EVCMotorDriver.o
 
 Discarded input sections
 
@@ -34,12 +52,13 @@ Discarded input sections
  .text          0x00000000        0x0 EVCMotorDriver.o
  .data          0x00000000        0x0 EVCMotorDriver.o
  .bss           0x00000000        0x0 EVCMotorDriver.o
- .text.setMotorSpeed
-                0x00000000       0x16 EVCMotorDriver.o
+ .text          0x00000000        0x0 motors.o
+ .data          0x00000000        0x0 motors.o
+ .bss           0x00000000        0x0 motors.o
  .text.getMotorDuty
-                0x00000000       0x10 EVCMotorDriver.o
+                0x00000000       0x10 motors.o
  .text.setMotorDuty
-                0x00000000       0x2e EVCMotorDriver.o
+                0x00000000       0x2e motors.o
  .text          0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodhi4.o)
  .data          0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodhi4.o)
  .bss           0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodhi4.o)
@@ -98,22 +117,6 @@ Discarded input sections
                 0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
  .text.libgcc.fixed
                 0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
- .text          0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
- .data          0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
- .bss           0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
- .text.libgcc.mul
-                0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
- .text.libgcc.div
-                0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
- .text.libgcc.prologue
-                0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
- .text.libgcc.builtins
-                0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
- .text.libgcc.fmul
-                0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
- .text.libgcc.fixed
-                0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
  .text          0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_clear_bss.o)
  .data          0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_clear_bss.o)
  .bss           0x00000000        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_clear_bss.o)
@@ -189,6 +192,7 @@ Linker script and memory map
 
 LOAD d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32.o
 LOAD EVCMotorDriver.o
+LOAD motors.o
 START GROUP
 LOAD d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5\libm.a
 END GROUP
@@ -288,7 +292,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x732
+.text           0x00000000      0xa82
  *(.vectors)
  .vectors       0x00000000       0x54 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vector_default
@@ -327,10 +331,8 @@ END GROUP
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x00000060       0x16 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_copy_data.o)
-                0x00000060                __do_copy_data
- .init4         0x00000076       0x10 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_clear_bss.o)
-                0x00000076                __do_clear_bss
+ .init4         0x00000060       0x10 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_clear_bss.o)
+                0x00000060                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -341,79 +343,95 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x00000086        0x8 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32.o
+ .init9         0x00000070        0x8 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32.o
  *(.init9)
  *(.text)
- .text          0x0000008e        0x4 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32.o
-                0x0000008e                __vector_12
-                0x0000008e                __bad_interrupt
-                0x0000008e                __vector_6
-                0x0000008e                __vector_3
-                0x0000008e                __vector_13
-                0x0000008e                __vector_17
-                0x0000008e                __vector_7
-                0x0000008e                __vector_5
-                0x0000008e                __vector_4
-                0x0000008e                __vector_9
-                0x0000008e                __vector_15
-                0x0000008e                __vector_8
-                0x0000008e                __vector_14
-                0x0000008e                __vector_10
-                0x0000008e                __vector_16
-                0x0000008e                __vector_18
-                0x0000008e                __vector_20
-                0x00000092                . = ALIGN (0x2)
+ .text          0x00000078        0x4 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/../../../../avr/lib/avr5/crtm32.o
+                0x00000078                __vector_12
+                0x00000078                __bad_interrupt
+                0x00000078                __vector_6
+                0x00000078                __vector_3
+                0x00000078                __vector_13
+                0x00000078                __vector_17
+                0x00000078                __vector_7
+                0x00000078                __vector_5
+                0x00000078                __vector_4
+                0x00000078                __vector_9
+                0x00000078                __vector_15
+                0x00000078                __vector_8
+                0x00000078                __vector_14
+                0x00000078                __vector_10
+                0x00000078                __vector_16
+                0x00000078                __vector_18
+                0x00000078                __vector_20
+                0x0000007c                . = ALIGN (0x2)
  *(.text.*)
- .text.setMotorDirection
-                0x00000092       0x22 EVCMotorDriver.o
-                0x00000092                setMotorDirection
- .text.init     0x000000b4       0x66 EVCMotorDriver.o
-                0x000000b4                init
+ .text.onIN1    0x0000007c       0x12 EVCMotorDriver.o
+                0x0000007c                onIN1
+ .text.onIN2    0x0000008e       0x5a EVCMotorDriver.o
+                0x0000008e                onIN2
+ .text.updateInputs
+                0x000000e8       0x3a EVCMotorDriver.o
+                0x000000e8                updateInputs
+ .text.init     0x00000122       0x16 EVCMotorDriver.o
+                0x00000122                init
+ .text.main     0x00000138        0xe EVCMotorDriver.o
+                0x00000138                main
  .text.processI2CByte
-                0x0000011a       0x34 EVCMotorDriver.o
-                0x0000011a                processI2CByte
- .text.doPID    0x0000014e      0x1f2 EVCMotorDriver.o
-                0x0000014e                doPID
- .text.updateSpeed
-                0x00000340       0x72 EVCMotorDriver.o
-                0x00000340                updateSpeed
- .text.main     0x000003b2        0xa EVCMotorDriver.o
-                0x000003b2                main
- .text.__vector_1
-                0x000003bc       0xc6 EVCMotorDriver.o
-                0x000003bc                __vector_1
- .text.__vector_2
-                0x00000482       0x92 EVCMotorDriver.o
-                0x00000482                __vector_2
- .text.__vector_11
-                0x00000514       0x34 EVCMotorDriver.o
-                0x00000514                __vector_11
+                0x00000146       0x34 EVCMotorDriver.o
+                0x00000146                processI2CByte
  .text.__vector_19
-                0x00000548      0x108 EVCMotorDriver.o
-                0x00000548                __vector_19
+                0x0000017a      0x108 EVCMotorDriver.o
+                0x0000017a                __vector_19
+ .text.setMotorSpeed
+                0x00000282       0x16 motors.o
+                0x00000282                setMotorSpeed
+ .text.getMotorDirection
+                0x00000298       0x1e motors.o
+                0x00000298                getMotorDirection
+ .text.setMotorDirection
+                0x000002b6       0x6a motors.o
+                0x000002b6                setMotorDirection
+ .text.initMotors
+                0x00000320       0xdc motors.o
+                0x00000320                initMotors
+ .text.doPID    0x000003fc      0x3ba motors.o
+                0x000003fc                doPID
+ .text.updateSpeed
+                0x000007b6       0x72 motors.o
+                0x000007b6                updateSpeed
+ .text.__vector_1
+                0x00000828       0xa2 motors.o
+                0x00000828                __vector_1
+ .text.__vector_2
+                0x000008ca       0xa2 motors.o
+                0x000008ca                __vector_2
+ .text.__vector_11
+                0x0000096c       0x34 motors.o
+                0x0000096c                __vector_11
  .text.libgcc.div
-                0x00000650       0x28 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodhi4.o)
-                0x00000650                __udivmodhi4
+                0x000009a0       0x28 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodhi4.o)
+                0x000009a0                __udivmodhi4
  .text.libgcc.div
-                0x00000678       0x2e d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_divmodsi4.o)
-                0x00000678                __divmodsi4
+                0x000009c8       0x2e d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_divmodsi4.o)
+                0x000009c8                __divmodsi4
  .text.libgcc.div
-                0x000006a6       0x10 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_negsi2.o)
-                0x000006a6                __negsi2
+                0x000009f6       0x10 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_negsi2.o)
+                0x000009f6                __negsi2
  .text.libgcc.mul
-                0x000006b6       0x16 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_muluhisi3.o)
-                0x000006b6                __muluhisi3
+                0x00000a06       0x16 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_muluhisi3.o)
+                0x00000a06                __muluhisi3
  .text.libgcc.div
-                0x000006cc       0x44 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodsi4.o)
-                0x000006cc                __udivmodsi4
+                0x00000a1c       0x44 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_udivmodsi4.o)
+                0x00000a1c                __udivmodsi4
  .text.libgcc.mul
-                0x00000710       0x1e d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_umulhisi3.o)
-                0x00000710                __umulhisi3
-                0x0000072e                . = ALIGN (0x2)
+                0x00000a60       0x1e d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_umulhisi3.o)
+                0x00000a60                __umulhisi3
+                0x00000a7e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000072e        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
-                0x0000072e                _exit
-                0x0000072e                exit
+ .fini9         0x00000a7e        0x0 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
+                0x00000a7e                _exit
+                0x00000a7e                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -432,104 +450,81 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000072e        0x4 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000a7e        0x4 d:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.1061/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.8.1/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000732                _etext = .
+                0x00000a82                _etext = .
 
-.data           0x00800060        0x2 load address 0x00000732
+.data           0x00800060        0x0 load address 0x00000a82
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
- .data.prescaler
-                0x00800060        0x1 EVCMotorDriver.o
-                0x00800060                prescaler
- .data.do_ticks
-                0x00800061        0x1 EVCMotorDriver.o
-                0x00800061                do_ticks
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
-                0x00800062                . = ALIGN (0x2)
-                0x00800062                _edata = .
-                0x00800062                PROVIDE (__data_end, .)
+                0x00800060                . = ALIGN (0x2)
+                0x00800060                _edata = .
+                0x00800060                PROVIDE (__data_end, .)
 
-.bss            0x00800062       0xb0
-                0x00800062                PROVIDE (__bss_start, .)
+.bss            0x00800060       0x3f
+                0x00800060                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.I_right   0x00800062        0x4 EVCMotorDriver.o
-                0x00800062                I_right
- .bss.I_left    0x00800066        0x4 EVCMotorDriver.o
-                0x00800066                I_left
  .bss.i2c_direction
-                0x0080006a        0x1 EVCMotorDriver.o
-                0x0080006a                i2c_direction
+                0x00800060        0x1 EVCMotorDriver.o
+                0x00800060                i2c_direction
  .bss.i2c_motor
-                0x0080006b        0x1 EVCMotorDriver.o
-                0x0080006b                i2c_motor
- .bss.i2c_t     0x0080006c        0x3 EVCMotorDriver.o
-                0x0080006c                i2c_t
+                0x00800061        0x1 EVCMotorDriver.o
+                0x00800061                i2c_motor
+ .bss.IN2down   0x00800062        0x1 EVCMotorDriver.o
+                0x00800062                IN2down
+ .bss.IN1down   0x00800063        0x1 EVCMotorDriver.o
+                0x00800063                IN1down
+ .bss.i2c_t     0x00800064        0x3 EVCMotorDriver.o
+                0x00800064                i2c_t
  .bss.i2c_t_index
-                0x0080006f        0x1 EVCMotorDriver.o
-                0x0080006f                i2c_t_index
- .bss.i2c_rst   0x00800070        0x1 EVCMotorDriver.o
-                0x00800070                i2c_rst
+                0x00800067        0x1 EVCMotorDriver.o
+                0x00800067                i2c_t_index
+ .bss.i2c_rst   0x00800068        0x1 EVCMotorDriver.o
+                0x00800068                i2c_rst
  .bss.i2c_r_index
-                0x00800071        0x1 EVCMotorDriver.o
-                0x00800071                i2c_r_index
- .bss.duty_right
-                0x00800072        0x1 EVCMotorDriver.o
-                0x00800072                duty_right
- .bss.duty_left
-                0x00800073        0x1 EVCMotorDriver.o
-                0x00800073                duty_left
- .bss.speed_right
-                0x00800074        0x1 EVCMotorDriver.o
-                0x00800074                speed_right
- .bss.speed_left
-                0x00800075        0x1 EVCMotorDriver.o
-                0x00800075                speed_left
- .bss.t_speed_right
-                0x00800076        0x1 EVCMotorDriver.o
-                0x00800076                t_speed_right
- .bss.t_speed_left
-                0x00800077        0x1 EVCMotorDriver.o
-                0x00800077                t_speed_left
- .bss.i_angles  0x00800078        0x1 EVCMotorDriver.o
-                0x00800078                i_angles
- .bss.doUpdate  0x00800079        0x1 EVCMotorDriver.o
-                0x00800079                doUpdate
- .bss.ticks_left
-                0x0080007a        0x1 EVCMotorDriver.o
-                0x0080007a                ticks_left
- .bss.ticks_right
-                0x0080007b        0x1 EVCMotorDriver.o
-                0x0080007b                ticks_right
- .bss.lastangle_right
-                0x0080007c        0x2 EVCMotorDriver.o
-                0x0080007c                lastangle_right
- .bss.intref_right
-                0x0080007e        0x3 EVCMotorDriver.o
-                0x0080007e                intref_right
- .bss.intref_left
-                0x00800081        0x3 EVCMotorDriver.o
-                0x00800081                intref_left
+                0x00800069        0x1 EVCMotorDriver.o
+                0x00800069                i2c_r_index
  *(COMMON)
- COMMON         0x00800084       0x8e EVCMotorDriver.o
-                0x00800084                newSpeed
-                0x00800088                angles
-                0x00800108                i2c_r
-                0x0080010e                error
-                0x00800112                PROVIDE (__bss_end, .)
-                0x00000732                __data_load_start = LOADADDR (.data)
-                0x00000734                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x0080006a       0x35 EVCMotorDriver.o
+                0x0080006a                newSpeed
+                0x0080006e                lastangle_left
+                0x00800070                doUpdate
+                0x00800071                left_dir
+                0x00800072                t_speed_right
+                0x00800073                prescaler
+                0x00800074                speed_right
+                0x00800075                ticks_right
+                0x00800076                i2c_r
+                0x0080007c                I_left
+                0x00800080                lasterror_left
+                0x00800084                do_ticks
+                0x00800085                speed_left
+                0x00800086                ticks_left
+                0x00800087                duty_left
+                0x00800088                intref_left
+                0x0080008b                lasterror_right
+                0x0080008f                t_speed_left
+                0x00800090                I_right
+                0x00800094                right_dir
+                0x00800095                error
+                0x00800099                intref_right
+                0x0080009c                duty_right
+                0x0080009d                lastangle_right
+                0x0080009f                PROVIDE (__bss_end, .)
+                0x00000a82                __data_load_start = LOADADDR (.data)
+                0x00000a82                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800112        0x0
-                0x00800112                PROVIDE (__noinit_start, .)
+.noinit         0x0080009f        0x0
+                0x0080009f                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800112                PROVIDE (__noinit_end, .)
-                0x00800112                _end = .
-                0x00800112                PROVIDE (__heap_start, .)
+                0x0080009f                PROVIDE (__noinit_end, .)
+                0x0080009f                _end = .
+                0x0080009f                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -572,6 +567,7 @@ END GROUP
  *(.comment)
  .comment       0x00000000       0x30 EVCMotorDriver.o
                                  0x31 (size before relaxing)
+ .comment       0x00000000       0x31 motors.o
 
 .note.gnu.build-id
  *(.note.gnu.build-id)
@@ -588,38 +584,47 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x80
+.debug_aranges  0x00000000       0xc0
  *(.debug_aranges)
  .debug_aranges
-                0x00000000       0x80 EVCMotorDriver.o
+                0x00000000       0x50 EVCMotorDriver.o
+ .debug_aranges
+                0x00000050       0x70 motors.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000      0x704
+.debug_info     0x00000000      0xc68
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x00000000      0x704 EVCMotorDriver.o
+ .debug_info    0x00000000      0x591 EVCMotorDriver.o
+ .debug_info    0x00000591      0x6d7 motors.o
 
-.debug_abbrev   0x00000000      0x20d
+.debug_abbrev   0x00000000      0x335
  *(.debug_abbrev)
- .debug_abbrev  0x00000000      0x20d EVCMotorDriver.o
+ .debug_abbrev  0x00000000      0x15a EVCMotorDriver.o
+ .debug_abbrev  0x0000015a      0x1db motors.o
 
-.debug_line     0x00000000      0x28b
+.debug_line     0x00000000      0x427
  *(.debug_line .debug_line.* .debug_line_end)
- .debug_line    0x00000000      0x28b EVCMotorDriver.o
+ .debug_line    0x00000000      0x19c EVCMotorDriver.o
+ .debug_line    0x0000019c      0x28b motors.o
 
-.debug_frame    0x00000000      0x1ec
+.debug_frame    0x00000000      0x264
  *(.debug_frame)
- .debug_frame   0x00000000      0x1ec EVCMotorDriver.o
+ .debug_frame   0x00000000       0xd0 EVCMotorDriver.o
+ .debug_frame   0x000000d0      0x194 motors.o
 
-.debug_str      0x00000000      0x379
+.debug_str      0x00000000      0x405
  *(.debug_str)
- .debug_str     0x00000000      0x379 EVCMotorDriver.o
-                                0x3e3 (size before relaxing)
+ .debug_str     0x00000000      0x373 EVCMotorDriver.o
+                                0x3be (size before relaxing)
+ .debug_str     0x00000373       0x92 motors.o
+                                0x3bb (size before relaxing)
 
-.debug_loc      0x00000000      0x60f
+.debug_loc      0x00000000      0x81e
  *(.debug_loc)
- .debug_loc     0x00000000      0x60f EVCMotorDriver.o
+ .debug_loc     0x00000000      0x124 EVCMotorDriver.o
+ .debug_loc     0x00000124      0x6fa motors.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -639,9 +644,10 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000       0x70
+.debug_ranges   0x00000000       0xa0
  *(.debug_ranges)
- .debug_ranges  0x00000000       0x70 EVCMotorDriver.o
+ .debug_ranges  0x00000000       0x40 EVCMotorDriver.o
+ .debug_ranges  0x00000040       0x60 motors.o
 
 .debug_macro
  *(.debug_macro)
